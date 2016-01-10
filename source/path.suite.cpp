@@ -356,26 +356,36 @@ PathError PathSuite::SaveToFile()
 {
     //LG(INFO, "PathSuite::SaveToFile begin");
 
-    PathError ret = PE_SUCCESS;
+    if (m_rawPath) {
+        auto res = m_rawPath->SaveToFile();
+        if( res != PE_SUCCESS ) {
+            return PE_NOT_FOUND;
+        }
+    }
 
-    if (m_rawPath)
-        m_rawPath->SaveToFile();
+    if (m_integratedPath) {
+        auto res = m_integratedPath->SaveToFile();
+        if( res != PE_SUCCESS ) {
+            return PE_NOT_FOUND;
+        }
+    }
 
-    if (m_integratedPath)
-        m_integratedPath->SaveToFile();
-
-    if (m_regularizedPath)
-        m_regularizedPath->SaveToFile();
+    if (m_regularizedPath) {
+        auto res = m_regularizedPath->SaveToFile();
+        if( res != PE_SUCCESS ) {
+            return PE_NOT_FOUND;
+        }
+    }
 
     PathSuitePersist pss(*this);
     eResult eRes = pss.Save();
     if (eRes != ILE_SUCCESS)
     {
-        ret = PE_NOT_FOUND;
+        return PE_NOT_FOUND;
     }
 
     //LG(INFO, "PathSuite::SaveToFile returns %d", ret);
-    return ret;
+    return PE_SUCCESS;
 }
 
 PathError PathSuite::LoadFromFile(std::string & sRawPathGuid, std::string & sIntPathGuid, std::string & sRegPathGuid)
