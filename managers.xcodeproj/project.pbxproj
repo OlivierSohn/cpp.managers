@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09832EE91C41D1CB009BC3DF /* path.manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 09832EE71C41D1CB009BC3DF /* path.manager.h */; };
+		09832EEA1C41D1CB009BC3DF /* path.suite.h in Headers */ = {isa = PBXBuildFile; fileRef = 09832EE81C41D1CB009BC3DF /* path.suite.h */; };
+		09832EF11C41D1D7009BC3DF /* path.suite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EED1C41D1D7009BC3DF /* path.suite.cpp */; };
+		09832EF21C41D1D7009BC3DF /* path.suite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EED1C41D1D7009BC3DF /* path.suite.cpp */; };
+		09832EF31C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */; };
+		09832EF41C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		09832ECE1C41D110009BC3DF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		09832D621C41C960009BC3DF /* libmanagers.osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanagers.osx.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		09832EBC1C41CFC2009BC3DF /* ios.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.debug.xcconfig; sourceTree = "<group>"; };
+		09832EBD1C41CFC2009BC3DF /* ios.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.release.xcconfig; sourceTree = "<group>"; };
+		09832EBE1C41CFC2009BC3DF /* ios.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.xcconfig; sourceTree = "<group>"; };
+		09832EBF1C41CFC2009BC3DF /* osx.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = osx.debug.xcconfig; sourceTree = "<group>"; };
+		09832EC01C41CFC2009BC3DF /* osx.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = osx.release.xcconfig; sourceTree = "<group>"; };
+		09832EC11C41CFC2009BC3DF /* osx.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = osx.xcconfig; sourceTree = "<group>"; };
+		09832EC21C41CFC2009BC3DF /* Project.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.Debug.xcconfig; sourceTree = "<group>"; };
+		09832EC31C41CFC2009BC3DF /* Project.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.Release.xcconfig; sourceTree = "<group>"; };
+		09832EC41C41CFC2009BC3DF /* Project.Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.Shared.xcconfig; sourceTree = "<group>"; };
+		09832EC51C41CFC2009BC3DF /* test.ios.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.ios.debug.xcconfig; sourceTree = "<group>"; };
+		09832EC61C41CFC2009BC3DF /* test.ios.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.ios.release.xcconfig; sourceTree = "<group>"; };
+		09832EC71C41CFC2009BC3DF /* test.ios.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.ios.xcconfig; sourceTree = "<group>"; };
+		09832EC81C41CFC2009BC3DF /* test.osx.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.osx.debug.xcconfig; sourceTree = "<group>"; };
+		09832EC91C41CFC2009BC3DF /* test.osx.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.osx.release.xcconfig; sourceTree = "<group>"; };
+		09832ECA1C41CFC2009BC3DF /* test.osx.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.osx.xcconfig; sourceTree = "<group>"; };
+		09832ECB1C41CFC2009BC3DF /* test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = test.xcconfig; sourceTree = "<group>"; };
+		09832ED01C41D110009BC3DF /* libmanagers.ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanagers.ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		09832EE71C41D1CB009BC3DF /* path.manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path.manager.h; sourceTree = "<group>"; };
+		09832EE81C41D1CB009BC3DF /* path.suite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path.suite.h; sourceTree = "<group>"; };
+		09832EEC1C41D1D7009BC3DF /* path.manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.manager.cpp; sourceTree = "<group>"; };
+		09832EED1C41D1D7009BC3DF /* path.suite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.suite.cpp; sourceTree = "<group>"; };
+		09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = referentiable.managers.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09832D5F1C41C960009BC3DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09832ECD1C41D110009BC3DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09832D591C41C960009BC3DF = {
+			isa = PBXGroup;
+			children = (
+				09832EBB1C41CFC2009BC3DF /* xcode.config */,
+				09832EE61C41D1CB009BC3DF /* include */,
+				09832EEB1C41D1D7009BC3DF /* source */,
+				09832D631C41C960009BC3DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09832D631C41C960009BC3DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09832D621C41C960009BC3DF /* libmanagers.osx.a */,
+				09832ED01C41D110009BC3DF /* libmanagers.ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09832EBB1C41CFC2009BC3DF /* xcode.config */ = {
+			isa = PBXGroup;
+			children = (
+				09832EBC1C41CFC2009BC3DF /* ios.debug.xcconfig */,
+				09832EBD1C41CFC2009BC3DF /* ios.release.xcconfig */,
+				09832EBE1C41CFC2009BC3DF /* ios.xcconfig */,
+				09832EBF1C41CFC2009BC3DF /* osx.debug.xcconfig */,
+				09832EC01C41CFC2009BC3DF /* osx.release.xcconfig */,
+				09832EC11C41CFC2009BC3DF /* osx.xcconfig */,
+				09832EC21C41CFC2009BC3DF /* Project.Debug.xcconfig */,
+				09832EC31C41CFC2009BC3DF /* Project.Release.xcconfig */,
+				09832EC41C41CFC2009BC3DF /* Project.Shared.xcconfig */,
+				09832EC51C41CFC2009BC3DF /* test.ios.debug.xcconfig */,
+				09832EC61C41CFC2009BC3DF /* test.ios.release.xcconfig */,
+				09832EC71C41CFC2009BC3DF /* test.ios.xcconfig */,
+				09832EC81C41CFC2009BC3DF /* test.osx.debug.xcconfig */,
+				09832EC91C41CFC2009BC3DF /* test.osx.release.xcconfig */,
+				09832ECA1C41CFC2009BC3DF /* test.osx.xcconfig */,
+				09832ECB1C41CFC2009BC3DF /* test.xcconfig */,
+			);
+			path = xcode.config;
+			sourceTree = "<group>";
+		};
+		09832EE61C41D1CB009BC3DF /* include */ = {
+			isa = PBXGroup;
+			children = (
+				09832EE71C41D1CB009BC3DF /* path.manager.h */,
+				09832EE81C41D1CB009BC3DF /* path.suite.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		09832EEB1C41D1D7009BC3DF /* source */ = {
+			isa = PBXGroup;
+			children = (
+				09832EEC1C41D1D7009BC3DF /* path.manager.cpp */,
+				09832EED1C41D1D7009BC3DF /* path.suite.cpp */,
+				09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		09832D601C41C960009BC3DF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09832EE91C41D1CB009BC3DF /* path.manager.h in Headers */,
+				09832EEA1C41D1CB009BC3DF /* path.suite.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		09832D611C41C960009BC3DF /* managers.osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09832D6D1C41C960009BC3DF /* Build configuration list for PBXNativeTarget "managers.osx" */;
+			buildPhases = (
+				09832D5E1C41C960009BC3DF /* Sources */,
+				09832D5F1C41C960009BC3DF /* Frameworks */,
+				09832D601C41C960009BC3DF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = managers.osx;
+			productName = managers;
+			productReference = 09832D621C41C960009BC3DF /* libmanagers.osx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		09832ECF1C41D110009BC3DF /* managers.ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09832ED61C41D110009BC3DF /* Build configuration list for PBXNativeTarget "managers.ios" */;
+			buildPhases = (
+				09832ECC1C41D110009BC3DF /* Sources */,
+				09832ECD1C41D110009BC3DF /* Frameworks */,
+				09832ECE1C41D110009BC3DF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = managers.ios;
+			productName = managers.ios;
+			productReference = 09832ED01C41D110009BC3DF /* libmanagers.ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09832D5A1C41C960009BC3DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Olivier;
+				TargetAttributes = {
+					09832D611C41C960009BC3DF = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					09832ECF1C41D110009BC3DF = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 2FJ564Q57Q;
+					};
+				};
+			};
+			buildConfigurationList = 09832D5D1C41C960009BC3DF /* Build configuration list for PBXProject "managers" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 09832D591C41C960009BC3DF;
+			productRefGroup = 09832D631C41C960009BC3DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09832D611C41C960009BC3DF /* managers.osx */,
+				09832ECF1C41D110009BC3DF /* managers.ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09832D5E1C41C960009BC3DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09832EF11C41D1D7009BC3DF /* path.suite.cpp in Sources */,
+				09832EF31C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09832ECC1C41D110009BC3DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09832EF21C41D1D7009BC3DF /* path.suite.cpp in Sources */,
+				09832EF41C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		09832D6B1C41C960009BC3DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09832EC21C41CFC2009BC3DF /* Project.Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		09832D6C1C41C960009BC3DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09832EC31C41CFC2009BC3DF /* Project.Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		09832D6E1C41C960009BC3DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09832EBF1C41CFC2009BC3DF /* osx.debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		09832D6F1C41C960009BC3DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09832EC01C41CFC2009BC3DF /* osx.release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		09832ED71C41D110009BC3DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09832EBC1C41CFC2009BC3DF /* ios.debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		09832ED81C41D110009BC3DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09832EBD1C41CFC2009BC3DF /* ios.release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09832D5D1C41C960009BC3DF /* Build configuration list for PBXProject "managers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09832D6B1C41C960009BC3DF /* Debug */,
+				09832D6C1C41C960009BC3DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09832D6D1C41C960009BC3DF /* Build configuration list for PBXNativeTarget "managers.osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09832D6E1C41C960009BC3DF /* Debug */,
+				09832D6F1C41C960009BC3DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09832ED61C41D110009BC3DF /* Build configuration list for PBXNativeTarget "managers.ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09832ED71C41D110009BC3DF /* Debug */,
+				09832ED81C41D110009BC3DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09832D5A1C41C960009BC3DF /* Project object */;
+}

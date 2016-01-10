@@ -1,0 +1,4 @@
+
+#include "test.xcconfig"
+#include "../../Shared/xcode.config/osx.xcconfig"
+
