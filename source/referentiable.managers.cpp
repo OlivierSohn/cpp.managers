@@ -1,12 +1,16 @@
+#include <string>
+
 #include "referentiable.manager.hpp"
+#include "referentiable.manager.h"
+#include "referentiable.root.h"
+#include "referentiables.h"
 
 #include "cg.math.animation.param.h"
-#include "param.filepath.h"
-
-#include "enum.scandirection.h"
-#include "animation.h"
 #include "param.h"
-#include <string>
+#include "animation.h"
+
+#include "character.h"
+#include "enum.scandirection.h"
 #include "wmoperation.spec.draw.h"
 #include "wmoperation.spec.png.h"
 #include "wmoperation.spec.text.h"
@@ -20,6 +24,7 @@
 #include "tdogl/CamOnCurve.h"
 #include "path.suite.h"
 #include "path.manager.h"
+#include "param.filepath.h"
 #include "shot.h"
 #include "timeline.h"
 #include "motion/layer.compositor.h"
@@ -49,14 +54,8 @@
 #include "paramset.scale.h"
 #include "paramset.shrink.h"
 
-#include "referentiable.root.h"
-#include "referentiable.manager.h"
-#include "referentiables.h"
-
 #include "WireModel.h"
 #include "WireTextModel.h"
-
-#include <vector>
 
 #define MAKE_REF_MANAGER(vIndex, t, uiManagerName, uiRefNameHint) \
 template class ReferentiableManager<t>;\
@@ -80,60 +79,61 @@ namespace imajuscule {
     MAKE_REF_MANAGER(6,  Param<int>,            "PARAMS INT",       "PI");
     MAKE_REF_MANAGER(7,  Param<bool>,           "PARAMS BOOL",      "PB");
     MAKE_REF_MANAGER(8,  Param<std::string>,    "PARAMS STRING",    "PS");
-    MAKE_REF_MANAGER(9,  Shot,                  "SHOTS","SHOT");
-    MAKE_REF_MANAGER(10, SpecWMDraw,            "SPECWMSDRAW","DRAW");
-    MAKE_REF_MANAGER(11, RasterSTAIBody,        "BODYS_RASTER","BODY");
-    MAKE_REF_MANAGER(12, SimSTAIBody,           "BODYS_SIM","SIM");
-    MAKE_REF_MANAGER(13, Joint,                 "JOINTS","J");
-    MAKE_REF_MANAGER(14, KinMotion,             "KIN MOTIONS","KM");
-    MAKE_REF_MANAGER(15, KinChain,              "KIN CHAINS","KC");
-    MAKE_REF_MANAGER(16, CameraBase,            "CAMERAS","CAMB");
-    MAKE_REF_MANAGER(17, Camera,                "CAMERAS 2","CAM");
-    MAKE_REF_MANAGER(18, WeightCam,             "CAMERAS_DYN","WCAM");
-    MAKE_REF_MANAGER(19, CamOnCurve,            "CAMERAS ON CURVE","CAMOC");
+    MAKE_REF_MANAGER(9,  Shot,                  "SHOTS",            "SHOT");
+    MAKE_REF_MANAGER(10, SpecWMDraw,            "SPECWMSDRAW",      "DRAW");
+    MAKE_REF_MANAGER(11, RasterSTAIBody,        "BODYS_RASTER",     "BODY");
+    MAKE_REF_MANAGER(12, SimSTAIBody,           "BODYS_SIM",        "SIM");
+    MAKE_REF_MANAGER(13, Joint,                 "JOINTS",           "J");
+    MAKE_REF_MANAGER(14, KinMotion,             "KIN MOTIONS",      "KM");
+    MAKE_REF_MANAGER(15, KinChain,              "KIN CHAINS",       "KC");
+    MAKE_REF_MANAGER(16, CameraBase,            "CAMERAS",          "CAMB");
+    MAKE_REF_MANAGER(17, Camera,                "CAMERAS 2",        "CAM");
+    MAKE_REF_MANAGER(18, WeightCam,             "CAMERAS_DYN",      "WCAM");
+    MAKE_REF_MANAGER(19, CamOnCurve,            "CAMERAS ON CURVE", "CAMOC");
     MAKE_REF_MANAGER(20, MotionCompositor,      "MOTION COMPOSITORS","MC");
     MAKE_REF_MANAGER(21, ContinuousCurveMotion, "CONT.CURVE MOTIONS","CCM");
     MAKE_REF_MANAGER(22, DiscreteCurveMotion,   "DISC.CURVE MOTIONS","DCM");
     MAKE_REF_MANAGER(23, LocalSpaceMotion,      "LOC.SPACE MOTIONS","LSM");
-    MAKE_REF_MANAGER(24, OffsetMotion,          "OFFSET MOTIONS","OM");
-    MAKE_REF_MANAGER(25, ParamMotion,           "PARAM MOTIONS","PM");
-    MAKE_REF_MANAGER(26, Position,              "POSITIONS","POS");
-    MAKE_REF_MANAGER(27, Color,                 "COLORS","COLOR");
-    MAKE_REF_MANAGER(28, Extrude,               "EXTRUDES","EXTRUDE");
-    MAKE_REF_MANAGER(29, FilePath,              "FILES","FILE");
-    MAKE_REF_MANAGER(30, Rasterize,             "RASTERIZES","RASTERIZE");
-    MAKE_REF_MANAGER(31, Rounding,              "ROUNDINGS","ROUNDING");
-    MAKE_REF_MANAGER(32, Scale,                 "SCALES","SCALE");
-    MAKE_REF_MANAGER(33, Shrink,                "SHRINKS","SHRINK");
-    MAKE_REF_MANAGER(34, WMGeoOp,               "WM GEO OPS","WMGEOOP");
-    MAKE_REF_MANAGER(35, RasterizeOp,           "RASTERIZE OPS","RASTERIZEOP");
-    MAKE_REF_MANAGER(36, STAIRenderOp,          "STAI RENDER OPS","STAIRENDEROP");
-    MAKE_REF_MANAGER(37, ShrinkOp,              "SHRINK OPS","SHRINKOP");
-    MAKE_REF_MANAGER(38, STAIRasterOp,          "STAI RASTER OPS","STAIRASTEROP");
-    MAKE_REF_MANAGER(39, STAISimOp,             "STAI SIM OPS","STAISIMOP");
-    MAKE_REF_MANAGER(40, ScaleOp,               "SCALE OPS","SCALE");
-    MAKE_REF_MANAGER(41, RoundedWM,             "ROUNDED WMS","ROUNDEDWM");
-    MAKE_REF_MANAGER(42, WireModel,             "WM","WM");
-    MAKE_REF_MANAGER(43, WireTextModel,         "WTM","WTM");
-    MAKE_REF_MANAGER(44, ReferentiableRoot,     "ROOT","ROOT");
-    MAKE_REF_MANAGER(45, SpecWMText,            "SPECWMSTEXT","TEXT");
-    MAKE_REF_MANAGER(46, Text,                  "TEXTS","TXT");
-    MAKE_REF_MANAGER(47, Timeline,              "TIMELINES","TIMELINE");
-	MAKE_REF_MANAGER(48, GeoTransform,			"GEOTS", "GEOT");
-	MAKE_REF_MANAGER(49, STAIEffectOp,			"EFFECT OPS", "EFFECT OP");
-	MAKE_REF_MANAGER(50, EffectOp,				"2EFFECT OPS", "2EFFECT OP");
-	MAKE_REF_MANAGER(51, EffectSTAIBody,		"BODYS_EFFECTS", "EFFECT");
-    MAKE_REF_MANAGER(52, Effect,				"EFFECTS", "EFFECT");
-    MAKE_REF_MANAGER(53, InterpolationParam, 	"Interpolations", "interpolation");
-    MAKE_REF_MANAGER(54, ScanDirectionParam, 	"Scan_Directions", "scan_direction");
-    MAKE_REF_MANAGER(55, Png,                   "PNG Import Params", "PNG Import");
-    MAKE_REF_MANAGER(56, SpecWMPng,             "SPECWMSPNG", "PNG");
-    MAKE_REF_MANAGER(57, FilePathParam,         "FILEPATHS", "FILEPATH");
-    MAKE_REF_MANAGER(58, Sphere,                "SPHERES", "SPHERE");
-    MAKE_REF_MANAGER(59, ParallellepipedRect,   "PARRECTS", "PARRECT");
-    MAKE_REF_MANAGER(60, Point3D,               "3dpoints", "point");
+    MAKE_REF_MANAGER(24, OffsetMotion,          "OFFSET MOTIONS",   "OM");
+    MAKE_REF_MANAGER(25, ParamMotion,           "PARAM MOTIONS",    "PM");
+    MAKE_REF_MANAGER(26, Position,              "POSITIONS",        "POS");
+    MAKE_REF_MANAGER(27, Color,                 "COLORS",           "COLOR");
+    MAKE_REF_MANAGER(28, Extrude,               "EXTRUDES",         "EXTRUDE");
+    MAKE_REF_MANAGER(29, FilePath,              "FILES",            "FILE");
+    MAKE_REF_MANAGER(30, Rasterize,             "RASTERIZES",       "RASTERIZE");
+    MAKE_REF_MANAGER(31, Rounding,              "ROUNDINGS",        "ROUNDING");
+    MAKE_REF_MANAGER(32, Scale,                 "SCALES",           "SCALE");
+    MAKE_REF_MANAGER(33, Shrink,                "SHRINKS",          "SHRINK");
+    MAKE_REF_MANAGER(34, WMGeoOp,               "WM GEO OPS",       "WMGEOOP");
+    MAKE_REF_MANAGER(35, RasterizeOp,           "RASTERIZE OPS",    "RASTERIZEOP");
+    MAKE_REF_MANAGER(36, STAIRenderOp,          "STAI RENDER OPS",  "STAIRENDEROP");
+    MAKE_REF_MANAGER(37, ShrinkOp,              "SHRINK OPS",       "SHRINKOP");
+    MAKE_REF_MANAGER(38, STAIRasterOp,          "STAI RASTER OPS",  "STAIRASTEROP");
+    MAKE_REF_MANAGER(39, STAISimOp,             "STAI SIM OPS",     "STAISIMOP");
+    MAKE_REF_MANAGER(40, ScaleOp,               "SCALE OPS",        "SCALE");
+    MAKE_REF_MANAGER(41, RoundedWM,             "ROUNDED WMS",      "ROUNDEDWM");
+    MAKE_REF_MANAGER(42, WireModel,             "WM",               "WM");
+    MAKE_REF_MANAGER(43, WireTextModel,         "WTM",              "WTM");
+    MAKE_REF_MANAGER(44, ReferentiableRoot,     "ROOT",             "ROOT");
+    MAKE_REF_MANAGER(45, SpecWMText,            "SPECWMSTEXT",      "TEXT");
+    MAKE_REF_MANAGER(46, Text,                  "TEXTS",            "TXT");
+    MAKE_REF_MANAGER(47, Timeline,              "TIMELINES",        "TIMELINE");
+	MAKE_REF_MANAGER(48, GeoTransform,			"GEOTS",            "GEOT");
+	MAKE_REF_MANAGER(49, STAIEffectOp,			"EFFECT OPS",       "EFFECT OP");
+	MAKE_REF_MANAGER(50, EffectOp,				"2EFFECT OPS",      "2EFFECT OP");
+	MAKE_REF_MANAGER(51, EffectSTAIBody,		"BODYS_EFFECTS",    "EFFECT");
+    MAKE_REF_MANAGER(52, Effect,				"EFFECTS",          "EFFECT");
+    MAKE_REF_MANAGER(53, InterpolationParam, 	"Interpolations",   "interpolation");
+    MAKE_REF_MANAGER(54, ScanDirectionParam, 	"Scan_Directions",  "scan_direction");
+    MAKE_REF_MANAGER(55, Png,                   "PNG Import Params","PNG Import");
+    MAKE_REF_MANAGER(56, SpecWMPng,             "SPECWMSPNG",       "PNG");
+    MAKE_REF_MANAGER(57, FilePathParam,         "FILEPATHS",        "FILEPATH");
+    MAKE_REF_MANAGER(58, Sphere,                "SPHERES",          "SPHERE");
+    MAKE_REF_MANAGER(59, ParallellepipedRect,   "PARRECTS",         "PARRECT");
+    MAKE_REF_MANAGER(60, Point3D,               "3dpoints",         "point");
     MAKE_REF_MANAGER(61, ConstraintMotion,      "CONSTRAINT MOTIONS","CONSTRM");
     MAKE_REF_MANAGER(62, IterativeConstraintMotion, "IT CONSTRAINT MOTIONS","ITCONSTRM");
+    MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     
 
     int InitializeRefManagers()
@@ -206,6 +206,7 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<Point3D>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<ConstraintMotion>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<IterativeConstraintMotion>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
