@@ -23,6 +23,7 @@
     <ClCompile Include="source\referentiable.managers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\managers.allincludes.h" />
     <ClInclude Include="include\path.manager.h" />
     <ClInclude Include="include\path.suite.h" />
   </ItemGroup>

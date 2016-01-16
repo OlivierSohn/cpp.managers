@@ -29,5 +29,8 @@
     <ClInclude Include="include\path.suite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\managers.allincludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
