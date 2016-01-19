@@ -32,6 +32,7 @@
 #include "motion/layer.curve.discrete.h"
 #include "motion/layer.localspace.h"
 #include "motion/layer.offset.h"
+#include "motion/layer.constraint.iterative.h"
 #include "motion/layer.param.h"
 
 #include "operation.geo.h"
