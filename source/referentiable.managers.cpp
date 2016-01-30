@@ -10,6 +10,7 @@
 #include "animation.h"
 
 #include "character.h"
+#include "constraint.iterative.h"
 #include "enum.scandirection.h"
 #include "wmoperation.spec.draw.h"
 #include "wmoperation.spec.png.h"
@@ -32,7 +33,6 @@
 #include "motion/layer.curve.discrete.h"
 #include "motion/layer.localspace.h"
 #include "motion/layer.offset.h"
-#include "motion/layer.constraint.iterative.h"
 #include "motion/layer.param.h"
 
 #include "operation.geo.h"
@@ -132,8 +132,8 @@ namespace imajuscule {
     MAKE_REF_MANAGER(58, Sphere,                "SPHERES",          "SPHERE");
     MAKE_REF_MANAGER(59, ParallellepipedRect,   "PARRECTS",         "PARRECT");
     MAKE_REF_MANAGER(60, Point3D,               "3dpoints",         "point");
-    MAKE_REF_MANAGER(61, ConstraintMotion,      "CONSTRAINT MOTIONS","CONSTRM");
-    MAKE_REF_MANAGER(62, IterativeConstraintMotion, "IT CONSTRAINT MOTIONS","ITCONSTRM");
+    MAKE_REF_MANAGER(61, Constraint,            "CONSTRAINT",       "CONSTR");
+    MAKE_REF_MANAGER(62, IterativeConstraint,   "IT CONSTRAINT",    "ITCONSTR");
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     
 
@@ -205,8 +205,8 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<Sphere>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<ParallellepipedRect>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<Point3D>::getInstance()));
-        Referentiables::registerManager(*(ReferentiableManager<ConstraintMotion>::getInstance()));
-        Referentiables::registerManager(*(ReferentiableManager<IterativeConstraintMotion>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<Constraint>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<IterativeConstraint>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
