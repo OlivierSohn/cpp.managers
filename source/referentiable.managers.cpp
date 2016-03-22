@@ -28,6 +28,7 @@
 #include "param.filepath.h"
 #include "shot.h"
 #include "timeline.h"
+#include "motion/layer.mixer.h"
 #include "motion/layer.compositor.h"
 #include "motion/layer.curve.continuous.h"
 #include "motion/layer.curve.discrete.h"
@@ -135,6 +136,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(61, Constraint,            "CONSTRAINT",       "CONSTR");
     MAKE_REF_MANAGER(62, IterativeConstraint,   "IT CONSTRAINT",    "ITCONSTR");
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
+    MAKE_REF_MANAGER(64, MotionMixer,           "MOTION MIXERS",    "MOTION MIXER");
     
 
     int InitializeRefManagers()
@@ -208,6 +210,7 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<Constraint>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<IterativeConstraint>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<MotionMixer>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
