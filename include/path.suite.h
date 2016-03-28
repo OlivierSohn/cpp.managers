@@ -57,7 +57,7 @@ namespace imajuscule
         void SetPaths(rawPath * rawPath, integratedPath * intPath, regularizedPath * regPath);
         void Initialize();
 
-        PERSISTABLE_VISITOR_HEADER_IMPL
+        VISITOR_HEADER_IMPL
 
     private:
         glm::dquat m_rotWorldToDevRefFrame;
