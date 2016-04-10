@@ -9,6 +9,7 @@
 #include "param.h"
 #include "animation.h"
 
+#include "layer.rigidbody.h"
 #include "character.h"
 #include "constraint.iterative.h"
 #include "enum.scandirection.h"
@@ -137,6 +138,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(62, IterativeConstraint,   "IT CONSTRAINT",    "ITCONSTR");
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     MAKE_REF_MANAGER(64, MotionMixer,           "MOTION MIXERS",    "MOTION MIXER");
+    MAKE_REF_MANAGER(65, RigidBodyMotion,       "RIGID BODY MOTIONS","RIGID BODY MOTION");
     
 
     int InitializeRefManagers()
@@ -211,6 +213,7 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<IterativeConstraint>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<MotionMixer>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<RigidBodyMotion>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
