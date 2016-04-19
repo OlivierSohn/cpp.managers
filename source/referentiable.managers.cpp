@@ -28,6 +28,7 @@
 #include "path.manager.h"
 #include "param.filepath.h"
 #include "shot.h"
+#include "script.h"
 #include "timeline.h"
 #include "motion/layer.mixer.h"
 #include "motion/layer.compositor.h"
@@ -139,6 +140,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     MAKE_REF_MANAGER(64, MotionMixer,           "MOTION MIXERS",    "MOTION MIXER");
     MAKE_REF_MANAGER(65, RigidBodyMotion,       "RIGID BODY MOTIONS","RIGID BODY MOTION");
+    MAKE_REF_MANAGER(66, Script,                "SCRIPTS",          "SCRIPT");
     
 
     int InitializeRefManagers()
@@ -214,6 +216,7 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<MotionMixer>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<RigidBodyMotion>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<Script>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
