@@ -22,7 +22,6 @@
 #include "joint.h"
 #include "tdogl/CameraBase.h"
 #include "tdogl/Camera.h"
-#include "tdogl/WeightCam.h"
 #include "tdogl/CamOnCurve.h"
 #include "path.suite.h"
 #include "path.manager.h"
@@ -92,7 +91,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(15, KinChain,              "KIN CHAINS",       "KC");
     MAKE_REF_MANAGER(16, CameraBase,            "CAMERAS",          "CAMB");
     MAKE_REF_MANAGER(17, Camera,                "CAMERAS 2",        "CAM");
-    MAKE_REF_MANAGER(18, WeightCam,             "CAMERAS_DYN",      "WCAM");
+    MAKE_REF_MANAGER(18, Script,                "SCRIPTS",          "SCRIPT");
     MAKE_REF_MANAGER(19, CamOnCurve,            "CAMERAS ON CURVE", "CAMOC");
     MAKE_REF_MANAGER(20, MotionCompositor,      "MOTION COMPOSITORS","MC");
     MAKE_REF_MANAGER(21, ContinuousCurveMotion, "CONT.CURVE MOTIONS","CCM");
@@ -140,8 +139,6 @@ namespace imajuscule {
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     MAKE_REF_MANAGER(64, MotionMixer,           "MOTION MIXERS",    "MOTION MIXER");
     MAKE_REF_MANAGER(65, RigidBodyMotion,       "RIGID BODY MOTIONS","RIGID BODY MOTION");
-    MAKE_REF_MANAGER(66, Script,                "SCRIPTS",          "SCRIPT");
-    
 
     int InitializeRefManagers()
     {
@@ -168,7 +165,7 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<KinChain>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<CameraBase>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<Camera>::getInstance()));
-        Referentiables::registerManager(*(ReferentiableManager<WeightCam>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<Script>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<CamOnCurve>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<MotionCompositor>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<ContinuousCurveMotion>::getInstance()));
@@ -216,7 +213,6 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<MotionMixer>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<RigidBodyMotion>::getInstance()));
-        Referentiables::registerManager(*(ReferentiableManager<Script>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
