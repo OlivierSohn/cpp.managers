@@ -204,7 +204,7 @@ void PathSuite::AddRotAndAccelerationPos(RotationData &rotData, accelerationData
 PathError PathSuite::ComputeInitialPositionAndRotation()
 {
     // the translations are expressed in unitized units
-    Transformation const & t = WorldView::gCamera().movable().transformation();
+    Transformation const & t = Timeline::gCamera().movable().transformation();
     const glm::vec3 & vpos = t.getTranslation();
 
     double pos[3] {vpos[0], vpos[1], vpos[2]};
@@ -224,7 +224,7 @@ PathError PathSuite::Play()
         if( auto wv = WorldView::hasInstance() ) {
             wv->editPlayer().setCurves(m_curveMotion, NULL);
             wv->usePlayer(true);
-            WorldView::gCamera().motion().StopInTime(0.f);
+            Timeline::gCamera().motion().StopInTime(0.f);
         } else {
             ret = PE_NOT_FOUND;
         }
@@ -250,7 +250,7 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
             if( auto wv = WorldView::hasInstance() ) {
                 wv->editPlayer().setCurves(m_discreteCurveMotion, NULL);
                 wv->usePlayer(true);
-                WorldView::gCamera().motion().StopInTime(0.f);
+                Timeline::gCamera().motion().StopInTime(0.f);
             } else {
                 LG(WARN, "PathSuite::Record : Initialize WorldView before call if you want the player to play the path in real time");
             }
