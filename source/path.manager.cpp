@@ -200,7 +200,7 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
     filePath.append(PATHSUITE_PATH);
     filePath.append("/");
 
-    for ( auto const & guid : Storage::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
     {
         PathSuite * ps = new PathSuite(this, guid, std::string("path"));
         
@@ -354,7 +354,7 @@ void ReferentiableManager<PathSuite>::LoadRawPaths()
     filePath.append(RAW_PATH_SUB_FOLDER);
     filePath.append("/");
     
-    for ( auto const & guid : Storage::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
     {
         rawPath * ps = new rawPath(guid);
        
@@ -393,7 +393,7 @@ void ReferentiableManager<PathSuite>::LoadIntegratedPaths()
     filePath.append(INT_PATH_SUB_FOLDER);
     filePath.append("/");
 
-    for ( auto const & guid : Storage::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
     {
         integratedPath * ps = new integratedPath(guid);
         std::string sRawPathGUID;
@@ -453,7 +453,7 @@ void ReferentiableManager<PathSuite>::LoadRegularizedPaths()
     filePath.append(REG_PATH_SUB_FOLDER);
     filePath.append("/");
 
-    for ( auto const & guid : Storage::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
     {
         regularizedPath * ps = new regularizedPath(guid);
         std::string sIntegratedPathGUID;
