@@ -52,6 +52,7 @@
 #include "paramset.extrude.h"
 #include "paramset.filepath.h"
 #include "paramset.geotransform.h"
+#include "paramset.postextrude.h"
 #include "paramset.rasterize.h"
 #include "paramset.rounding.h"
 #include "paramset.scale.h"
@@ -139,6 +140,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     MAKE_REF_MANAGER(64, MotionMixer,           "MOTION MIXERS",    "MOTION MIXER");
     MAKE_REF_MANAGER(65, RigidBodyMotion,       "RIGID BODY MOTIONS","RIGID BODY MOTION");
+    MAKE_REF_MANAGER(66, PostExtrude,           "POSTEXTRUDS","POSTEXTRUDE");
 
     int InitializeRefManagers()
     {
@@ -213,6 +215,7 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<Human>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<MotionMixer>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<RigidBodyMotion>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<PostExtrude>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
