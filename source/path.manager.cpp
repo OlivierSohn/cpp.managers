@@ -7,7 +7,7 @@
 #include "motion/curve.continuous.regularized.h"
 #include "motion/curve.discrete.integrated.h"
 
-using namespace imajuscule;
+namespace imajuscule {
 
 ReferentiableManager<PathSuite>::ReferentiableManager():
 ReferentiableManagerBase()
@@ -551,4 +551,5 @@ end:
 
     LG((curAnim ? INFO : ERR), "ReferentiableManager<PathSuite>::newReferentiable(...) returns 0x%x", curAnim);
     return curAnim;
+}
 }

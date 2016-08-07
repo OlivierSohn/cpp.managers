@@ -220,7 +220,5 @@ namespace imajuscule {
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
     }
-    
-#include "path.manager.cpp"
 }
 

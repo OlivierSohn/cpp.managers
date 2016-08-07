@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		097835611D57B05800E47ED3 /* unity.build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 097835601D57B05800E47ED3 /* unity.build.cpp */; };
+		097835621D57B05900E47ED3 /* unity.build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 097835601D57B05800E47ED3 /* unity.build.cpp */; };
 		09832EE91C41D1CB009BC3DF /* path.manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 09832EE71C41D1CB009BC3DF /* path.manager.h */; };
 		09832EEA1C41D1CB009BC3DF /* path.suite.h in Headers */ = {isa = PBXBuildFile; fileRef = 09832EE81C41D1CB009BC3DF /* path.suite.h */; };
-		09832EF11C41D1D7009BC3DF /* path.suite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EED1C41D1D7009BC3DF /* path.suite.cpp */; };
-		09832EF21C41D1D7009BC3DF /* path.suite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EED1C41D1D7009BC3DF /* path.suite.cpp */; };
-		09832EF31C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */; };
-		09832EF41C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		097835601D57B05800E47ED3 /* unity.build.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unity.build.cpp; sourceTree = "<group>"; };
 		09832D621C41C960009BC3DF /* libmanagers.osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanagers.osx.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		09832EBC1C41CFC2009BC3DF /* ios.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.debug.xcconfig; sourceTree = "<group>"; };
 		09832EBD1C41CFC2009BC3DF /* ios.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.release.xcconfig; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 		09832EEB1C41D1D7009BC3DF /* source */ = {
 			isa = PBXGroup;
 			children = (
+				097835601D57B05800E47ED3 /* unity.build.cpp */,
 				09832EEC1C41D1D7009BC3DF /* path.manager.cpp */,
 				09832EED1C41D1D7009BC3DF /* path.suite.cpp */,
 				09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */,
@@ -222,8 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09832EF11C41D1D7009BC3DF /* path.suite.cpp in Sources */,
-				09832EF31C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */,
+				097835611D57B05800E47ED3 /* unity.build.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,8 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09832EF21C41D1D7009BC3DF /* path.suite.cpp in Sources */,
-				09832EF41C41D1D7009BC3DF /* referentiable.managers.cpp in Sources */,
+				097835621D57B05900E47ED3 /* unity.build.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +307,7 @@
 				09832ED81C41D110009BC3DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
