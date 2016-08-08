@@ -73,21 +73,18 @@
     <Import Project="..\gl.view\gl.view.dependencies.props" />
     <Import Project="..\gl.view\gl.view.props" />
     <Import Project="..\shared\props\project.props" />
-    <Import Project="..\shared\props\self.includes.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Shared\props\win64.props" />
     <Import Project="..\gl.view\gl.view.dependencies.props" />
     <Import Project="..\shared\props\project.props" />
-    <Import Project="..\shared\props\self.includes.props" />
     <Import Project="..\gl.view\gl.view.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\gl.view\gl.view.dependencies.props" />
     <Import Project="..\shared\props\project.props" />
-    <Import Project="..\shared\props\self.includes.props" />
     <Import Project="..\gl.view\gl.view.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
@@ -95,7 +92,6 @@
     <Import Project="..\Shared\props\win64.props" />
     <Import Project="..\gl.view\gl.view.dependencies.props" />
     <Import Project="..\shared\props\project.props" />
-    <Import Project="..\shared\props\self.includes.props" />
     <Import Project="..\gl.view\gl.view.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
