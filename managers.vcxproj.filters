@@ -13,6 +13,9 @@
       <UniqueIdentifier>{30823E6F-2B1C-4545-BBFC-EBC812A9C150}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Unity">
+      <UniqueIdentifier>{a28d04ff-aff0-4528-8783-492dcbd8aa44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\referentiable.managers.cpp">
@@ -20,6 +23,9 @@
     </ClCompile>
     <ClCompile Include="source\path.suite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\unity.build.cpp">
+      <Filter>Unity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,9 +14,9 @@
 #include "motion/constraint.translation.onSphereLookAtCenter.h"
 
 
-#define KEY_RAWPATH_GUID        'f' // string
-#define KEY_INTPATH_GUID        'g' // string
-#define KEY_REGPATH_GUID        'h' // string
+const int KEY_RAWPATH_GUID       = 'f'; // string
+const int KEY_INTPATH_GUID       = 'g'; // string
+const int KEY_REGPATH_GUID       = 'h'; // string
 
 
 using namespace imajuscule;
