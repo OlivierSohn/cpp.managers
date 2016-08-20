@@ -103,31 +103,31 @@ namespace imajuscule
 
             void LoadStringForKey(char key, std::string & str) override;
             virtual void LoadInt32ForKey(char key, int32_t iVal) override{
-                LG(ERR, "regularizedPathLoad::LoadInt32ForKey(%d, %d) should not be called", key, iVal);
+                LG(ERR, "PathSuiteLoad::LoadInt32ForKey(%d, %d) should not be called", key, iVal);
             }
             virtual void LoadBoolForKey(char key, bool bVal) override{
-                LG(ERR, "regularizedPathLoad::LoadBoolForKey(%d, %d) should not be called", key, bVal);
+                LG(ERR, "PathSuiteLoad::LoadBoolForKey(%d, %d) should not be called", key, bVal);
             }
             virtual void LoadDoubleArrayForKey(char key, double * pdVal, size_t nElems) override{
-                LG(ERR, "regularizedPathLoad::LoadDoubleArrayForKey(%d, ..., %d) should not be called", key, nElems);
+                LG(ERR, "PathSuiteLoad::LoadDoubleArrayForKey(%d, ..., %d) should not be called", key, nElems);
             }
             virtual void LoadDoubleForKey(char key, double fVal) override{
-                LG(ERR, "regularizedPathLoad::LoadDoubleForKey(%d, %f) should not be called", key, fVal);
+                LG(ERR, "PathSuiteLoad::LoadDoubleForKey(%d, %f) should not be called", key, fVal);
             }
             virtual void LoadCharArrayForKey(char key, char * /*pcVal*/, size_t nElems)override {
-                LG(ERR, "regularizedPathLoad::LoadCharArrayForKey(%d, ..., %d) should not be called", key, nElems);
+                LG(ERR, "PathSuiteLoad::LoadCharArrayForKey(%d, ..., %d) should not be called", key, nElems);
             }
             virtual void LoadInt32ArrayForKey(char key, int32_t * /*piVal*/, size_t nElems)override {
-                LG(ERR, "regularizedPathLoad::LoadInt32ArrayForKey(%d, ..., %d) should not be called", key, nElems);
+                LG(ERR, "PathSuiteLoad::LoadInt32ArrayForKey(%d, ..., %d) should not be called", key, nElems);
             }
             virtual void LoadFloatArrayForKey(char key, float * pfVal, size_t nElems) override{
-                LG(ERR, "regularizedPathLoad::LoadFloatArrayForKey(%d, ..., %d) should not be called", key, nElems);
+                LG(ERR, "PathSuiteLoad::LoadFloatArrayForKey(%d, ..., %d) should not be called", key, nElems);
             }
             virtual void LoadCharForKey(char key, char cVal) override{
-                LG(ERR, "regularizedPathLoad::LoadCharForKey(%d, %d) should not be called", key, cVal);
+                LG(ERR, "PathSuiteLoad::LoadCharForKey(%d, %d) should not be called", key, cVal);
             }
             virtual void LoadFloatForKey(char key, float fVal) override{
-                LG(ERR, "regularizedPathLoad::LoadFloatForKey(%d, %f) should not be called", key, fVal);
+                LG(ERR, "PathSuiteLoad::LoadFloatForKey(%d, %f) should not be called", key, fVal);
             }
 
         private:
