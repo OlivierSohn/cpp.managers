@@ -12,8 +12,6 @@
 
 #include "referentiable.h"
 
-#define PATHSUITE_PATH "suite"
-
 namespace imajuscule
 {
     class CurveMotion;

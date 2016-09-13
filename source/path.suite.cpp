@@ -405,7 +405,7 @@ PathError PathSuite::LoadFromFile(std::string & sRawPathGuid, std::string & sInt
 }
 
 PathSuite::PathSuitePersist::PathSuitePersist(PathSuite & pPathSuite) :
-ReferentiablePersist( {PATH_SUB_FOLDER,PATHSUITE_PATH}, pPathSuite.guid(), pPathSuite),
+ReferentiablePersist( directory_pathsuites(), pPathSuite.guid(), pPathSuite),
 m_pPathSuite(pPathSuite)
 {
     //LG(INFO, "PathSuitePersist::PathSuitePersist begin");
@@ -485,7 +485,7 @@ void PathSuite::PathSuiteLoad::LoadStringForKey(char key, std::string & sVal)
 }
 
 PathSuite::PathSuiteLoad::PathSuiteLoad(PathSuite&pathSuite) :
-ReferentiableLoad({PATH_SUB_FOLDER,PATHSUITE_PATH}, pathSuite.guid(), pathSuite),
+ReferentiableLoad(directory_pathsuites(), pathSuite.guid(), pathSuite),
 m_pPathSuite(pathSuite)
 {}
 

@@ -192,15 +192,8 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
 {
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites begin");
 
-    std::string filePath;
-
-    filePath.append("./");
-    filePath.append(PATH_SUB_FOLDER);
-    filePath.append("/");
-    filePath.append(PATHSUITE_PATH);
-    filePath.append("/");
-
-    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
+    using namespace StorageStuff;
+    for ( auto const & guid : listFilenames(directory_pathsuites()) )
     {
         PathSuite * ps = new PathSuite(this, guid, std::string("path"));
         
@@ -346,15 +339,7 @@ void ReferentiableManager<PathSuite>::LoadRawPaths()
 {
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadRawPaths begin");
 
-    std::string filePath;
-
-    filePath.append("./");
-    filePath.append(PATH_SUB_FOLDER);
-    filePath.append("/");
-    filePath.append(RAW_PATH_SUB_FOLDER);
-    filePath.append("/");
-    
-    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(directory_rawpaths()) )
     {
         rawPath * ps = new rawPath(guid);
        
@@ -385,15 +370,7 @@ void ReferentiableManager<PathSuite>::LoadIntegratedPaths()
 {
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadIntegratedPaths begin");
 
-    std::string filePath;
-
-    filePath.append("./");
-    filePath.append(PATH_SUB_FOLDER);
-    filePath.append("/");
-    filePath.append(INT_PATH_SUB_FOLDER);
-    filePath.append("/");
-
-    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(directory_intpaths()) )
     {
         integratedPath * ps = new integratedPath(guid);
         std::string sRawPathGUID;
@@ -445,15 +422,7 @@ void ReferentiableManager<PathSuite>::LoadRegularizedPaths()
 {
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadRegularizedPaths begin");
 
-    std::string filePath;
-
-    filePath.append("./");
-    filePath.append(PATH_SUB_FOLDER);
-    filePath.append("/");
-    filePath.append(REG_PATH_SUB_FOLDER);
-    filePath.append("/");
-
-    for ( auto const & guid : StorageStuff::listFilenames(filePath) )
+    for ( auto const & guid : StorageStuff::listFilenames(directory_regpaths()) )
     {
         regularizedPath * ps = new regularizedPath(guid);
         std::string sIntegratedPathGUID;
