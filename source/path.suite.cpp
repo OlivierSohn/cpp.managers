@@ -1,3 +1,5 @@
+#include <cstring> // memcpy
+
 #include "path.suite.h"
 #include "path.manager.h"
 #include "gl.model.h"
@@ -9,7 +11,6 @@
 #include "motion/layer.curve.continuous.h"
 #include "os.log.h"
 #include "os.log.format.h"
-#include <cstring> // memcpy
 
 #include "motion/constraint.translation.onSphereLookAtCenter.h"
 
