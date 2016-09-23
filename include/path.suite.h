@@ -100,9 +100,6 @@ namespace imajuscule
         protected:
 
             void LoadStringForKey(char key, std::string & str) override;
-            virtual void LoadInt32ForKey(char key, int32_t iVal) override{
-                LG(ERR, "PathSuiteLoad::LoadInt32ForKey(%d, %d) should not be called", key, iVal);
-            }
             virtual void LoadBoolForKey(char key, bool bVal) override{
                 LG(ERR, "PathSuiteLoad::LoadBoolForKey(%d, %d) should not be called", key, bVal);
             }
