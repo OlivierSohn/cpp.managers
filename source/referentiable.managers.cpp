@@ -13,6 +13,7 @@
 #include "character.h"
 #include "constraint.iterative.h"
 #include "enum.scandirection.h"
+#include "enum.postrender.h"
 #include "wmoperation.spec.draw.h"
 #include "wmoperation.spec.png.h"
 #include "wmoperation.spec.text.h"
@@ -54,6 +55,7 @@
 #include "paramset.geotransform.h"
 #include "paramset.postextrude.h"
 #include "paramset.rasterize.h"
+#include "paramset.render.h"
 #include "paramset.rounding.h"
 #include "paramset.scale.h"
 #include "paramset.shrink.h"
@@ -140,7 +142,9 @@ namespace imajuscule {
     MAKE_REF_MANAGER(63, Human,                 "HUMANS",           "HUMAN");
     MAKE_REF_MANAGER(64, MotionMixer,           "MOTION MIXERS",    "MOTION MIXER");
     MAKE_REF_MANAGER(65, RigidBodyMotion,       "RIGID BODY MOTIONS","RIGID BODY MOTION");
-    MAKE_REF_MANAGER(66, PostExtrude,           "POSTEXTRUDS","POSTEXTRUDE");
+    MAKE_REF_MANAGER(66, PostExtrude,           "POSTEXTRUDES","POSTEXTRUDE");
+    MAKE_REF_MANAGER(67, Render,           "RENDERS","RENDER");
+    MAKE_REF_MANAGER(68, postRenderParam,           "Post Render Params","Post Render");
 
     int InitializeRefManagers()
     {
@@ -216,6 +220,8 @@ namespace imajuscule {
         Referentiables::registerManager(*(ReferentiableManager<MotionMixer>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<RigidBodyMotion>::getInstance()));
         Referentiables::registerManager(*(ReferentiableManager<PostExtrude>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<Render>::getInstance()));
+        Referentiables::registerManager(*(ReferentiableManager<postRenderParam>::getInstance()));
         
         ReferentiableRoot::getInstance(); // to make sure there is a root
         return 2;
