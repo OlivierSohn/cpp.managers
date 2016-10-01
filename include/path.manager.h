@@ -50,6 +50,8 @@ namespace imajuscule
         typedef std::map<std::string, rawPath*> rawPaths;
         // guid of elementary path - nRefs
         typedef std::map < std::string, int > refMap;
+        
+        std::vector<PathSuite*> path_suites;
 
         int addRef(const std::string & guid);
         int removeRef(const std::string & guid);

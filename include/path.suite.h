@@ -18,10 +18,12 @@ namespace imajuscule
     class ReferentiableManagerBase;
     class PathSuite : public Referentiable
     {
+        protected:
+        virtual ~PathSuite();
+
     public:
         PathSuite(ReferentiableManagerBase* pm, const std::string & guid, const std::string & nameHint);
         PathSuite(ReferentiableManagerBase* pm, const std::string & name, const std::string & guid, rawPath * rawPath, integratedPath* intPath, regularizedPath* regPath);
-        virtual ~PathSuite();
 
         PathError Record(bool bUseTranslationConstraint = true);
         PathError SetTransforms(const glm::dquat & rotDeviceToCamera, const glm::dquat & rotAttitude);

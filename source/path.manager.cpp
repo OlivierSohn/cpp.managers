@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <memory>
 
 #include "os.storage.h"
 #include "os.log.h"
@@ -18,30 +19,13 @@ ReferentiableManagerBase()
 
 
 ReferentiableManager<PathSuite>::~ReferentiableManager()
-{
-    {
-        integratedPaths::iterator it = m_integratedPaths.begin();
-        for (; it != m_integratedPaths.end(); ++it)
-        {
-            delete (it->second);
-        }
+{    
+    for( auto * p : path_suites) {
+        p->deinstantiate();
     }
-
-    {
-        regularizedPaths::iterator it = m_regularizedPaths.begin();
-        for (; it != m_regularizedPaths.end(); ++it)
-        {
-            delete (it->second);
-        }
-    }
-
-    {
-        rawPaths::iterator it = m_rawPaths.begin();
-        for (; it != m_rawPaths.end(); ++it)
-        {
-            delete (it->second);
-        }
-    }
+    
+    A(g_pRefManager == this);
+    g_pRefManager = 0;
 }
 
 PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint, const std::vector<std::string> & guids, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode)
@@ -53,11 +37,6 @@ PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint
         (adaptive ? "true" : "false"),
         intmode);
         */
-    PathSuite * curSuite = NULL;
-    rawPath * newRawPath = NULL;
-    integratedPath * newIntPath = NULL;
-    regularizedPath * newRegPath = NULL;
-
     std::string guid, guid1, guid2, guid3;
     
     int sizeGuids = (int)guids.size();
@@ -98,27 +77,27 @@ PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint
         guid3 = generateGuid();
     }
     
-    newRawPath = new rawPath(guid1);
+    std::unique_ptr<rawPath> newRawPath(new rawPath(guid1));
     {
-        std::pair<rawPaths::iterator, bool> resInsert = m_rawPaths.insert(rawPaths::value_type(guid1, newRawPath));
+        std::pair<rawPaths::iterator, bool> resInsert = m_rawPaths.insert(rawPaths::value_type(guid1, newRawPath.get()));
         if ( unlikely(!resInsert.second))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::newPath : m_rawPaths.insert failed (uuid: %s)", guid1.c_str());
-            goto end;
+            return 0;
         }
         else
         {
             //LG(INFO, "ReferentiableManager<PathSuite>::newPath : m_rawPaths.insert success (uuid: %s)", guid1.c_str());
         }
     }
-
-    newIntPath = new integratedPath(guid2, newRawPath, freqCutoff, adaptive, intmode);
+    
+    std::unique_ptr<integratedPath> newIntPath(new integratedPath(guid2, newRawPath.get(), freqCutoff, adaptive, intmode));
     {
-        std::pair<integratedPaths::iterator, bool> resInsert = m_integratedPaths.insert(integratedPaths::value_type(guid2, newIntPath));
+        std::pair<integratedPaths::iterator, bool> resInsert = m_integratedPaths.insert(integratedPaths::value_type(guid2, newIntPath.get()));
         if ( unlikely(!resInsert.second))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::newPath : m_integratedPaths.insert failed (uuid: %s)", guid2.c_str());
-            goto end;
+            return 0;
         }
         else
         {
@@ -126,13 +105,13 @@ PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint
         }
     }
     
-    newRegPath = new regularizedPath(guid3, newIntPath);
+    std::unique_ptr<regularizedPath> newRegPath(new regularizedPath(guid3, newIntPath.get()));
     {
-        std::pair<regularizedPaths::iterator, bool> resInsert = m_regularizedPaths.insert(regularizedPaths::value_type(guid3, newRegPath));
+        std::pair<regularizedPaths::iterator, bool> resInsert = m_regularizedPaths.insert(regularizedPaths::value_type(guid3, newRegPath.get()));
         if ( unlikely(!resInsert.second))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::newPath : m_regularizedPaths.insert failed (uuid: %s)", guid3.c_str());
-            goto end;
+            return 0;
         }
         else
         {
@@ -140,28 +119,24 @@ PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint
         }
     }
 
-    curSuite = new PathSuite(this, nameHint, guid, newRawPath, newIntPath, newRegPath);
-    if ( unlikely(!ComputeSessionName(curSuite, true)))
+    ref_unique_ptr<PathSuite> curSuite(new PathSuite(this, nameHint, guid, newRawPath.get(), newIntPath.get(), newRegPath.get()));
+    if ( unlikely(!ComputeSessionName(curSuite.get(), true)))
     {
         LG(ERR, "ReferentiableManager<PathSuite>::newPath : ComputeSessionName failed (uuid: %s)", guid.c_str());
-        delete curSuite;
-        curSuite = NULL;
+        curSuite = 0;
         goto end;
     }
 
 end:
-    if (!curSuite)
+    if (curSuite.get())
     {
-        if (newRawPath)
-            delete newRawPath;
-        if (newIntPath)
-            delete newIntPath;
-        if (newRegPath)
-            delete newRegPath;
+        newRawPath.release();
+        newIntPath.release();
+        newRegPath.release();
     }
 
-    LG((curSuite ? INFO : ERR), "ReferentiableManager<PathSuite>::newPath(...) returns 0x%x", curSuite);
-    return curSuite;
+    LG((curSuite ? INFO : ERR), "ReferentiableManager<PathSuite>::newPath(...) returns 0x%x", curSuite.get());
+    return curSuite.release();
 }
 
 PathSuite* ReferentiableManager<PathSuite>::newPathVariant(PathSuite* finalizedSuite, const std::string & nameHint, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode, const std::vector<std::string> & guids)
@@ -195,14 +170,13 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
     using namespace StorageStuff;
     for ( auto const & guid : listFilenames(directory_pathsuites()) )
     {
-        PathSuite * ps = new PathSuite(this, guid, std::string("path"));
+        ref_unique_ptr<PathSuite> ps(new PathSuite(this, guid, std::string("path")));
         
         std::string Raw, Int, Reg;
         PathError ret = ps->LoadFromFile(Raw, Int, Reg);
         if ( unlikely(ret != PE_SUCCESS))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ps->LoadFromFile failed (uuid: %s, err: %d)", guid.c_str(), ret);
-            delete ps;
             continue;
         }
 
@@ -210,7 +184,6 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
         if ( unlikely(rawIt == m_rawPaths.end()))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : raw path not found (uuid : %s)", Raw.c_str());
-            delete ps;
             continue;
         }
 
@@ -218,7 +191,6 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
         if ( unlikely(intIt == m_integratedPaths.end()))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : int path not found (uuid : %s)", Int.c_str());
-            delete ps;
             continue;
         }
 
@@ -226,7 +198,6 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
         if ( unlikely(regIt == m_regularizedPaths.end()))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : reg path not found (uuid : %s)", Reg.c_str());
-            delete ps;
             continue;
         }
 
@@ -237,21 +208,18 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
         if ( unlikely(!rawP))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : raw path NULL");
-            delete ps;
             continue;
         }
 
         if ( unlikely(!intP))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : int path NULL");
-            delete ps;
             continue;
         }
 
         if ( unlikely(!regP))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : reg path NULL");
-            delete ps;
             continue;
         }
 
@@ -263,20 +231,20 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
         if ( unlikely(ret != PE_SUCCESS))
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ps->FinalizeRecord failed (uuid: %s, err: %d)", guid.c_str(), ret);
-            delete ps;
             continue;
         }
         
-        if( unlikely(!ComputeSessionName(ps, true)) )
+        if( unlikely(!ComputeSessionName(ps.get(), true)) )
         {
             LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName failed (uuid: %s)", guid.c_str());
-            delete ps;
             continue;
         }
         else
         {
             //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName success (uuid: %s)", guid.c_str());
         }
+        
+        path_suites.push_back(ps.release());
     }
 
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites end");
@@ -490,7 +458,6 @@ Referentiable* ReferentiableManager<PathSuite>::newReferentiableInternal(const s
         (nameHint.c_str() ? nameHint.c_str() : "NULL"),
         guids.size());
         */
-    PathSuite* curAnim = NULL;
 
     std::string guid;
 
@@ -505,20 +472,15 @@ Referentiable* ReferentiableManager<PathSuite>::newReferentiableInternal(const s
         guid = generateGuid();
     }
 
-    curAnim = new PathSuite(this, guid, nameHint);
+    ref_unique_ptr<PathSuite> curAnim(new PathSuite(this, guid, nameHint));
     if (bVisible)
         curAnim->Hide();
-    if ( unlikely(!ComputeSessionName(curAnim, bFinalize)))
+    if ( unlikely(!ComputeSessionName(curAnim.get(), bFinalize)))
     {
         LG(ERR, "ReferentiableManager<PathSuite>::newReferentiable : ComputeSessionName failed (uuid: %s)", guid.c_str());
-        delete curAnim;
-        curAnim = NULL;
-        goto end;
+        return 0;
     }
 
-end:
-
-    LG((curAnim ? INFO : ERR), "ReferentiableManager<PathSuite>::newReferentiable(...) returns 0x%x", curAnim);
-    return curAnim;
+    return curAnim.release();
 }
 }
