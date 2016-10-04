@@ -37,13 +37,6 @@ PathSuite::~PathSuite()
 
 void PathSuite::ClearConstraints()
 {
-    std::vector<TranslationConstraint*>::iterator it = m_constraints.begin();
-    std::vector<TranslationConstraint*>::iterator end = m_constraints.end();
-    for (; it != end; ++it)
-    {
-        delete *it;
-    }
-
     m_constraints.clear();
 }
 
@@ -188,8 +181,8 @@ void PathSuite::AddRotAndAccelerationPos(RotationData &rotData, accelerationData
      
         glm::vec3 pos;
 
-        std::vector<TranslationConstraint*>::iterator it = m_constraints.begin();
-        std::vector<TranslationConstraint*>::iterator end = m_constraints.end();
+        auto it = m_constraints.begin();
+        auto end = m_constraints.end();
         for (; it != end; ++it)
         {
             (*it)->apply(glm::quat(rotData.rotation), pos);
@@ -260,9 +253,7 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
 
             if (bUseTranslationConstraint)
             {
-                glm::vec3 center(0.f, 0.f, 0.f);
-                TranslationOnSphere * pCstr = new TranslationOnSphere(center, 100.f);
-                m_constraints.push_back(pCstr);
+                m_constraints.emplace_back(std::unique_ptr<TranslationConstraint>( new TranslationOnSphere(glm::vec3{}, 100.f) ));
             }
         }
     }

@@ -17,13 +17,12 @@ ReferentiableManagerBase()
     LoadPaths();
 }
 
-
+    void ReferentiableManager<PathSuite>::doTearDown()
+    {
+        path_suites.clear();
+    }
 ReferentiableManager<PathSuite>::~ReferentiableManager()
 {    
-    for( auto * p : path_suites) {
-        p->deinstantiate();
-    }
-    
     A(g_pRefManager == this);
     g_pRefManager = 0;
 }
@@ -170,7 +169,7 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
     using namespace StorageStuff;
     for ( auto const & guid : listFilenames(directory_pathsuites()) )
     {
-        ref_unique_ptr<PathSuite> ps(new PathSuite(this, guid, std::string("path")));
+        auto ps = make_unique_ref<PathSuite>(this, guid, std::string("path"));
         
         std::string Raw, Int, Reg;
         PathError ret = ps->LoadFromFile(Raw, Int, Reg);
@@ -244,7 +243,7 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
             //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName success (uuid: %s)", guid.c_str());
         }
         
-        path_suites.push_back(ps.release());
+        path_suites.emplace_back(std::move(ps));
     }
 
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites end");

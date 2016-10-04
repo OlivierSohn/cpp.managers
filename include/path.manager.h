@@ -33,6 +33,7 @@ namespace imajuscule
 
         Referentiable* newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bVisible, bool bFinalize) override;
 
+        void doTearDown() override;
     public:
         virtual PathSuite* newPath(const std::string & nameHint, 
             const std::vector<std::string> & guids, 
@@ -51,7 +52,7 @@ namespace imajuscule
         // guid of elementary path - nRefs
         typedef std::map < std::string, int > refMap;
         
-        std::vector<PathSuite*> path_suites;
+        std::vector<ref_unique_ptr<PathSuite>> path_suites;
 
         int addRef(const std::string & guid);
         int removeRef(const std::string & guid);

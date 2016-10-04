@@ -72,7 +72,7 @@ namespace imajuscule
         // unpersisted for now : result of constraint is applied in ipData.
         // in the future it will be persisted, result of constraint will not be applied in ipData (constraint will be applied each time)
         // and the constraint will be made editable
-        std::vector<TranslationConstraint*> m_constraints;
+        std::vector<std::unique_ptr<TranslationConstraint>> m_constraints;
 
         void ClearConstraints();
 
