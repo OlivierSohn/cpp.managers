@@ -66,8 +66,8 @@ namespace imajuscule
         rawPath* m_rawPath;
         integratedPath* m_integratedPath;
         regularizedPath* m_regularizedPath;
-        CurveMotion * m_curveMotion;
-        CurveMotion * m_discreteCurveMotion;
+        ref_unique_ptr<CurveMotion> m_curveMotion;
+        ref_unique_ptr<CurveMotion> m_discreteCurveMotion;
 
         // unpersisted for now : result of constraint is applied in ipData.
         // in the future it will be persisted, result of constraint will not be applied in ipData (constraint will be applied each time)

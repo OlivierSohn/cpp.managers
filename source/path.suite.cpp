@@ -24,14 +24,6 @@ using namespace imajuscule;
 
 PathSuite::~PathSuite()
 {
-    if( m_curveMotion )
-        m_curveMotion->deinstantiate();
-    m_curveMotion = NULL;
-    
-    if( m_discreteCurveMotion )
-        m_discreteCurveMotion->deinstantiate();
-    m_discreteCurveMotion = NULL;
-
     ClearConstraints();
 }
 
@@ -44,25 +36,21 @@ PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & name, co
 Referentiable(pm, guid,name),
 m_rawPath(rawPath),
 m_integratedPath(intPath),
-m_regularizedPath(regPath),
-m_curveMotion(NULL),
-m_discreteCurveMotion(NULL)
+m_regularizedPath(regPath)
 {
     Initialize();
 }
 
 void PathSuite::Initialize()
 {
-    m_discreteCurveMotion = DiscreteCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_integratedPath->lastValueTraversal(), m_integratedPath);
+    m_discreteCurveMotion.reset( DiscreteCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_integratedPath->lastValueTraversal(), m_integratedPath).release());
 }
 
 PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & guid, const std::string & nameHint) :
 Referentiable(pm, guid, nameHint),
 m_rawPath(NULL),
 m_integratedPath(NULL),
-m_regularizedPath(NULL),
-m_curveMotion(NULL),
-m_discreteCurveMotion(NULL)
+m_regularizedPath(NULL)
 {
 }
 
@@ -92,7 +80,7 @@ PathError PathSuite::Finalize(unsigned int fps)
             ret = m_rawPath->finalize();
             if (ret == PE_SUCCESS)
             {
-                m_curveMotion = ContinuousCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_regularizedPath->traversal(), m_regularizedPath);
+                m_curveMotion.reset(ContinuousCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_regularizedPath->traversal(), m_regularizedPath).release());
             }
         }
     }
@@ -216,7 +204,7 @@ PathError PathSuite::Play()
     if (m_curveMotion)
     {
         if( auto wv = WorldView::hasInstance() ) {
-            wv->editPlayer().setCurves(m_curveMotion, NULL);
+            wv->editPlayer().setCurves({m_curveMotion.get(), NULL});
             wv->usePlayer(true);
             Timeline::gCamera().motion().StopInTime(0.f);
         } else {
@@ -242,7 +230,7 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
         if( ret == PE_SUCCESS )
         {
             if( auto wv = WorldView::hasInstance() ) {
-                wv->editPlayer().setCurves(m_discreteCurveMotion, NULL);
+                wv->editPlayer().setCurves({m_discreteCurveMotion.get(), NULL});
                 wv->usePlayer(true);
                 Timeline::gCamera().motion().StopInTime(0.f);
             } else {
@@ -311,7 +299,7 @@ void PathSuite::UnPlay()
 {
     if( auto wv = WorldView::hasInstance() ) {
         wv->usePlayer(false);
-        wv->editPlayer().setCurves(NULL, NULL);
+        wv->editPlayer().setCurves({NULL, NULL});
     } else {
         LG(WARN, "PathSuite::UnPlay : Initialize WorldView before call if you want the player to play the path in real time");
     }
