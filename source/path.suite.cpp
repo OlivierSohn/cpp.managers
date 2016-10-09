@@ -186,16 +186,19 @@ void PathSuite::AddRotAndAccelerationPos(RotationData &rotData, accelerationData
 PathError PathSuite::ComputeInitialPositionAndRotation()
 {
     // the translations are expressed in unitized units
-    Transformation const & t = Timeline::gCamera().movable().transformation();
-    const glm::vec3 & vpos = t.getTranslation();
-
-    double pos[3] {vpos[0], vpos[1], vpos[2]};
-    
-    const glm::quat & quat = t.getRotation();
-    
-    glm::dquat doubleQuat = glm::dquat(quat);
-    
-    return m_rawPath->SetInitialConditions(pos, doubleQuat);
+    if(auto * c = Timeline::gCamera()) {
+        Transformation const & t = c->movable().transformation();
+        const glm::vec3 & vpos = t.getTranslation();
+        
+        double pos[3] {vpos[0], vpos[1], vpos[2]};
+        
+        const glm::quat & quat = t.getRotation();
+        
+        glm::dquat doubleQuat = glm::dquat(quat);
+        
+        return m_rawPath->SetInitialConditions(pos, doubleQuat);
+    }
+    return PE_NOT_FOUND;
 }
 
 PathError PathSuite::Play()
@@ -206,7 +209,9 @@ PathError PathSuite::Play()
         if( auto wv = WorldView::hasInstance() ) {
             wv->editPlayer().setCurves({m_curveMotion.get(), NULL});
             wv->usePlayer(true);
-            Timeline::gCamera().motion().StopInTime(0.f);
+            if(auto * c = Timeline::gCamera()) {
+                c->motion().StopInTime(0.f);
+            }
         } else {
             ret = PE_NOT_FOUND;
         }
@@ -232,7 +237,9 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
             if( auto wv = WorldView::hasInstance() ) {
                 wv->editPlayer().setCurves({m_discreteCurveMotion.get(), NULL});
                 wv->usePlayer(true);
-                Timeline::gCamera().motion().StopInTime(0.f);
+                if(auto * c = Timeline::gCamera()) {
+                    c->motion().StopInTime(0.f);
+                }
             } else {
                 LG(WARN, "PathSuite::Record : Initialize WorldView before call if you want the player to play the path in real time");
             }
@@ -384,6 +391,41 @@ PathError PathSuite::LoadFromFile(std::string & sRawPathGuid, std::string & sInt
     return ret;
 }
 
+PathError PathSuite::RemoveFilesRecurse() {
+    PathError ret = PE_SUCCESS;
+    std::string path = directory_pathsuites().toString() + "/" + guid();
+    if( StorageStuff::fileExists(path)) {
+        auto res = StorageStuff::removeFile(path);
+        if(res != ILE_SUCCESS) {
+            LG(ERR, "failed to delete pathsuite file");
+            ret = PE_NOT_FOUND;
+        }
+    }
+
+    if(m_rawPath) {
+        auto res = m_rawPath->RemoveFile();
+        if(res != PE_SUCCESS) {
+            ret = res;
+        }
+    }
+    
+    if(m_integratedPath) {
+        auto res = m_integratedPath->RemoveFile();
+        if(res != PE_SUCCESS) {
+            ret = res;
+        }
+    }
+    
+    if(m_regularizedPath) {
+        auto res = m_regularizedPath->RemoveFile();
+        if(res != PE_SUCCESS) {
+            ret = res;
+        }
+    }
+    
+    return ret;
+}
+
 PathSuite::PathSuitePersist::PathSuitePersist(PathSuite & pPathSuite) :
 ReferentiablePersist( directory_pathsuites(), pPathSuite.guid(), pPathSuite),
 m_pPathSuite(pPathSuite)
@@ -395,10 +437,6 @@ m_pPathSuite(pPathSuite)
     //LG(INFO, "PathSuitePersist::PathSuitePersist end");
 }
 
-PathSuite::PathSuitePersist::~PathSuitePersist()
-{
-    //LG(INFO, "PathSuitePersist::~PathSuitePersist");
-}
 
 eResult PathSuite::PathSuitePersist::doSave()
 {
@@ -468,10 +506,6 @@ PathSuite::PathSuiteLoad::PathSuiteLoad(PathSuite&pathSuite) :
 ReferentiableLoad(directory_pathsuites(), pathSuite.guid(), pathSuite),
 m_pPathSuite(pathSuite)
 {}
-
-PathSuite::PathSuiteLoad::~PathSuiteLoad()
-{
-}
 
 eResult PathSuite::PathSuiteLoad::Load(std::string & sRawPathGuid, std::string & sIntPathGuid, std::string & sRegPathGuid)
 {

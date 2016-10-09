@@ -18,6 +18,7 @@ namespace imajuscule
     template <>
     class ReferentiableManager<PathSuite> : public ReferentiableManagerBase
     {
+        friend class Globals;
     public:
         static ReferentiableManager * getInstance();
 

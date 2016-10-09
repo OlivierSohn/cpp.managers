@@ -1,12 +1,17 @@
 #include <algorithm>
 #include <memory>
 
-#include "os.storage.h"
 #include "os.log.h"
-#include "path.manager.h"
+
+#include "os.storage.h"
+
+#include "globals.h"
+
 #include "cg.math.acc.record.h"
 #include "motion/curve.continuous.regularized.h"
 #include "motion/curve.discrete.integrated.h"
+
+#include "path.manager.h"
 
 namespace imajuscule {
 
@@ -24,7 +29,6 @@ ReferentiableManagerBase()
 ReferentiableManager<PathSuite>::~ReferentiableManager()
 {    
     A(g_pRefManager == this);
-    g_pRefManager = 0;
 }
 
 PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint, const std::vector<std::string> & guids, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode)
@@ -442,12 +446,7 @@ ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::g_pRefManager
 
 ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::getInstance()
 {
-    if (!g_pRefManager)
-    {
-        g_pRefManager = new ReferentiableManager<PathSuite>();
-    }
-
-    return g_pRefManager;
+    return Globals::ptr<ReferentiableManager<PathSuite>>(g_pRefManager);
 }
 
 

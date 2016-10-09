@@ -51,7 +51,8 @@ namespace imajuscule
 
         // save
         PathError SaveToFile();
-
+        PathError RemoveFilesRecurse();
+        
         // load
         PathError LoadFromFile(std::string & sRawPathGuid, std::string & sIntPathGuid, std::string & sRegPathGuid);
         void SetPaths(rawPath * rawPath, integratedPath * intPath, regularizedPath * regPath);
@@ -83,7 +84,6 @@ namespace imajuscule
         {
         public:
             PathSuitePersist(PathSuite & pPathSuite);
-            virtual ~PathSuitePersist();
 
             eResult doSave() override;
 
@@ -95,12 +95,10 @@ namespace imajuscule
         {
         public:
             PathSuiteLoad(PathSuite & pPathSuite);
-            virtual ~PathSuiteLoad();
 
             eResult Load(std::string & sRawPathGuid, std::string & sIntPathGuid, std::string & sRegPathGuid);
 
         protected:
-
             void LoadStringForKey(char key, std::string & str) override;
             virtual void LoadBoolForKey(char key, bool bVal) override{
                 LG(ERR, "PathSuiteLoad::LoadBoolForKey(%d, %d) should not be called", key, bVal);

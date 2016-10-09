@@ -148,79 +148,89 @@ namespace imajuscule {
 
     int InitializeRefManagers(Referentiables & rs )
     {
-        ReferentiableRoot::recycle_with_leak(); // doc F3F7C744-0B78-4750-A0A1-7A9BAD872188
-
-        rs.regManager(*(ReferentiableManager<PathSuite>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Animation<float>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Animation<int>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Animation<bool>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Animation<std::string>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Param<float>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Param<int>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Param<bool>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Param<std::string>>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Shot>::getInstance()));
-        rs.regManager(*(ReferentiableManager<SpecWMDraw>::getInstance()));
-        rs.regManager(*(ReferentiableManager<RasterSTAIBody>::getInstance()));
-        rs.regManager(*(ReferentiableManager<SimSTAIBody>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Joint>::getInstance()));
-        rs.regManager(*(ReferentiableManager<KinMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<KinChain>::getInstance()));
-        rs.regManager(*(ReferentiableManager<CameraBase>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Camera>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Script>::getInstance()));
-        rs.regManager(*(ReferentiableManager<CamOnCurve>::getInstance()));
-        rs.regManager(*(ReferentiableManager<MotionCompositor>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ContinuousCurveMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<DiscreteCurveMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<LocalSpaceMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<OffsetMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ParamMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Position>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Color>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Extrude>::getInstance()));
-        rs.regManager(*(ReferentiableManager<FilePath>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Rasterize>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Rounding>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Scale>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Shrink>::getInstance()));
-        rs.regManager(*(ReferentiableManager<WMGeoOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<RasterizeOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<STAIRenderOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ShrinkOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<STAIRasterOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<STAISimOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ScaleOp>::getInstance()));
-        rs.regManager(*(ReferentiableManager<RoundedWM>::getInstance()));
-        rs.regManager(*(ReferentiableManager<WireModel>::getInstance()));
-        rs.regManager(*(ReferentiableManager<WireTextModel>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ReferentiableRoot>::getInstance()));
-        rs.regManager(*(ReferentiableManager<SpecWMText>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Text>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Timeline>::getInstance()));
-		rs.regManager(*(ReferentiableManager<GeoTransform>::getInstance()));
-		rs.regManager(*(ReferentiableManager<STAIEffectOp>::getInstance()));
-		rs.regManager(*(ReferentiableManager<EffectOp>::getInstance()));
-		rs.regManager(*(ReferentiableManager<EffectSTAIBody>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Effect>::getInstance()));
-        rs.regManager(*(ReferentiableManager<InterpolationParam>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ScanDirectionParam>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Png>::getInstance()));
-        rs.regManager(*(ReferentiableManager<SpecWMPng>::getInstance()));
-        rs.regManager(*(ReferentiableManager<FilePathParam>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Sphere>::getInstance()));
-        rs.regManager(*(ReferentiableManager<ParallellepipedRect>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Point3D>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Constraint>::getInstance()));
-        rs.regManager(*(ReferentiableManager<IterativeConstraint>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Human>::getInstance()));
-        rs.regManager(*(ReferentiableManager<MotionMixer>::getInstance()));
-        rs.regManager(*(ReferentiableManager<RigidBodyMotion>::getInstance()));
-        rs.regManager(*(ReferentiableManager<PostExtrude>::getInstance()));
-        rs.regManager(*(ReferentiableManager<Render>::getInstance()));
-        rs.regManager(*(ReferentiableManager<postRenderParam>::getInstance()));
+        // the last referentiable to be deinstantiated on cleanup should be the ref root, so
+        // it needs to be the first one created :
         
-        ReferentiableRoot::getInstance(); // to make sure there is a root
+        // we create first the root manager ...
+        auto root_manager = ReferentiableManager<ReferentiableRoot>::getInstance();
+        // ... and we create the root
+        auto root = ReferentiableRoot::getInstance();
+
+        rs.regManager(ReferentiableManager<PathSuite>::getInstance());
+        rs.regManager(ReferentiableManager<Animation<float>>::getInstance());
+        rs.regManager(ReferentiableManager<Animation<int>>::getInstance());
+        rs.regManager(ReferentiableManager<Animation<bool>>::getInstance());
+        rs.regManager(ReferentiableManager<Animation<std::string>>::getInstance());
+        rs.regManager(ReferentiableManager<Param<float>>::getInstance());
+        rs.regManager(ReferentiableManager<Param<int>>::getInstance());
+        rs.regManager(ReferentiableManager<Param<bool>>::getInstance());
+        rs.regManager(ReferentiableManager<Param<std::string>>::getInstance());
+        rs.regManager(ReferentiableManager<Shot>::getInstance());
+        rs.regManager(ReferentiableManager<SpecWMDraw>::getInstance());
+        rs.regManager(ReferentiableManager<RasterSTAIBody>::getInstance());
+        rs.regManager(ReferentiableManager<SimSTAIBody>::getInstance());
+        rs.regManager(ReferentiableManager<Joint>::getInstance());
+        rs.regManager(ReferentiableManager<KinMotion>::getInstance());
+        rs.regManager(ReferentiableManager<KinChain>::getInstance());
+        rs.regManager(ReferentiableManager<CameraBase>::getInstance());
+        rs.regManager(ReferentiableManager<Camera>::getInstance());
+        rs.regManager(ReferentiableManager<Script>::getInstance());
+        rs.regManager(ReferentiableManager<CamOnCurve>::getInstance());
+        rs.regManager(ReferentiableManager<MotionCompositor>::getInstance());
+        rs.regManager(ReferentiableManager<ContinuousCurveMotion>::getInstance());
+        rs.regManager(ReferentiableManager<DiscreteCurveMotion>::getInstance());
+        rs.regManager(ReferentiableManager<LocalSpaceMotion>::getInstance());
+        rs.regManager(ReferentiableManager<OffsetMotion>::getInstance());
+        rs.regManager(ReferentiableManager<ParamMotion>::getInstance());
+        rs.regManager(ReferentiableManager<Position>::getInstance());
+        rs.regManager(ReferentiableManager<Color>::getInstance());
+        rs.regManager(ReferentiableManager<Extrude>::getInstance());
+        rs.regManager(ReferentiableManager<FilePath>::getInstance());
+        rs.regManager(ReferentiableManager<Rasterize>::getInstance());
+        rs.regManager(ReferentiableManager<Rounding>::getInstance());
+        rs.regManager(ReferentiableManager<Scale>::getInstance());
+        rs.regManager(ReferentiableManager<Shrink>::getInstance());
+        rs.regManager(ReferentiableManager<WMGeoOp>::getInstance());
+        rs.regManager(ReferentiableManager<RasterizeOp>::getInstance());
+        rs.regManager(ReferentiableManager<STAIRenderOp>::getInstance());
+        rs.regManager(ReferentiableManager<ShrinkOp>::getInstance());
+        rs.regManager(ReferentiableManager<STAIRasterOp>::getInstance());
+        rs.regManager(ReferentiableManager<STAISimOp>::getInstance());
+        rs.regManager(ReferentiableManager<ScaleOp>::getInstance());
+        rs.regManager(ReferentiableManager<RoundedWM>::getInstance());
+        rs.regManager(ReferentiableManager<WireModel>::getInstance());
+        rs.regManager(ReferentiableManager<WireTextModel>::getInstance());
+        rs.regManager(root_manager);
+        rs.regManager(ReferentiableManager<SpecWMText>::getInstance());
+        rs.regManager(ReferentiableManager<Text>::getInstance());
+        rs.regManager(ReferentiableManager<Timeline>::getInstance());
+		rs.regManager(ReferentiableManager<GeoTransform>::getInstance());
+		rs.regManager(ReferentiableManager<STAIEffectOp>::getInstance());
+		rs.regManager(ReferentiableManager<EffectOp>::getInstance());
+		rs.regManager(ReferentiableManager<EffectSTAIBody>::getInstance());
+        rs.regManager(ReferentiableManager<Effect>::getInstance());
+        rs.regManager(ReferentiableManager<InterpolationParam>::getInstance());
+        rs.regManager(ReferentiableManager<ScanDirectionParam>::getInstance());
+        rs.regManager(ReferentiableManager<Png>::getInstance());
+        rs.regManager(ReferentiableManager<SpecWMPng>::getInstance());
+        rs.regManager(ReferentiableManager<FilePathParam>::getInstance());
+        rs.regManager(ReferentiableManager<Sphere>::getInstance());
+        rs.regManager(ReferentiableManager<ParallellepipedRect>::getInstance());
+        rs.regManager(ReferentiableManager<Point3D>::getInstance());
+        rs.regManager(ReferentiableManager<Constraint>::getInstance());
+        rs.regManager(ReferentiableManager<IterativeConstraint>::getInstance());
+        rs.regManager(ReferentiableManager<Human>::getInstance());
+        rs.regManager(ReferentiableManager<MotionMixer>::getInstance());
+        rs.regManager(ReferentiableManager<RigidBodyMotion>::getInstance());
+        rs.regManager(ReferentiableManager<PostExtrude>::getInstance());
+        rs.regManager(ReferentiableManager<Render>::getInstance());
+        rs.regManager(ReferentiableManager<postRenderParam>::getInstance());
+        
+        // and root must be initialized once all ref managers are registered
+        if(root) {
+            root->initialize();
+        }
+        
         return 2;
     }
 }
