@@ -210,7 +210,7 @@ PathError PathSuite::Play()
             wv->editPlayer().setCurves({m_curveMotion.get(), NULL});
             wv->usePlayer(true);
             if(auto * c = Timeline::gCamera()) {
-                c->motion().StopInTime(0.f);
+                lsm(c->motion()).StopInTime(0.f);
             }
         } else {
             ret = PE_NOT_FOUND;
@@ -238,7 +238,7 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
                 wv->editPlayer().setCurves({m_discreteCurveMotion.get(), NULL});
                 wv->usePlayer(true);
                 if(auto * c = Timeline::gCamera()) {
-                    c->motion().StopInTime(0.f);
+                    lsm(c->motion()).StopInTime(0.f);
                 }
             } else {
                 LG(WARN, "PathSuite::Record : Initialize WorldView before call if you want the player to play the path in real time");
