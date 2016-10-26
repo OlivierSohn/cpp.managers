@@ -31,6 +31,7 @@
 #include "script.h"
 #include "timeline.h"
 #include "motion/layer.generic.h"
+#include "motion/layer.generic.framed.h"
 #include "motion/layer.mixer.h"
 #include "motion/layer.compositor.h"
 #include "motion/layer.curve.continuous.h"
@@ -147,6 +148,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(67, Render,           "RENDERS","RENDER");
     MAKE_REF_MANAGER(68, postRenderParam,           "Post Render Params","Post Render");
     MAKE_REF_MANAGER(69, GenericMotion,           "Generic Motions","Generic Motion");
+    MAKE_REF_MANAGER(70, FramedMotion,           "Framed Motions","Framed Motion");
 
     int InitializeRefManagers(Referentiables & rs )
     {
@@ -228,6 +230,7 @@ namespace imajuscule {
         rs.regManager(ReferentiableManager<Render>::getInstance());
         rs.regManager(ReferentiableManager<postRenderParam>::getInstance());
         rs.regManager(ReferentiableManager<GenericMotion>::getInstance());
+        rs.regManager(ReferentiableManager<FramedMotion>::getInstance());
         
         // and root must be initialized once all ref managers are registered
         if(root) {
