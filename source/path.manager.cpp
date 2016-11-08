@@ -34,7 +34,7 @@ ReferentiableManager<PathSuite>::~ReferentiableManager()
 PathSuite* ReferentiableManager<PathSuite>::newPath(const std::string & nameHint, const std::vector<std::string> & guids, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode)
 {
     /*LG(INFO, "ReferentiableManager<PathSuite>::newPath(%s, %d guids, %f, %s, %d) begin",
-        (nameHint.c_str() ? nameHint.c_str() : "NULL"),
+        (nameHint.c_str() ? nameHint.c_str() : "nullptr"),
         guids.size(),
         freqCutoff,
         (adaptive ? "true" : "false"),
@@ -145,13 +145,13 @@ end:
 PathSuite* ReferentiableManager<PathSuite>::newPathVariant(PathSuite* finalizedSuite, const std::string & nameHint, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode, const std::vector<std::string> & guids)
 {
     A(0);//todo
-    return NULL;
+    return nullptr;
 }
 
 PathSuite* ReferentiableManager<PathSuite>::newPathByCompression(PathSuite* finalizedSuite, const std::string & nameHint, const std::vector<std::string> & guids)
 {
     A(0);//todo
-    return NULL;
+    return nullptr;
 }
 
 void ReferentiableManager<PathSuite>::LoadPaths()
@@ -210,19 +210,19 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
 
         if ( unlikely(!rawP))
         {
-            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : raw path NULL");
+            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : raw path nullptr");
             continue;
         }
 
         if ( unlikely(!intP))
         {
-            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : int path NULL");
+            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : int path nullptr");
             continue;
         }
 
         if ( unlikely(!regP))
         {
-            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : reg path NULL");
+            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : reg path nullptr");
             continue;
         }
 
@@ -255,7 +255,7 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
 
 int ReferentiableManager<PathSuite>::addRef(const std::string & guid)
 {
-    //LG(INFO, "ReferentiableManager<PathSuite>::addRef(%s)", (guid.c_str() ? guid.c_str():"NULL"));
+    //LG(INFO, "ReferentiableManager<PathSuite>::addRef(%s)", (guid.c_str() ? guid.c_str():"nullptr"));
 
     //  try to insert with refCount == 1
     //  if insertion fails
@@ -272,13 +272,13 @@ int ReferentiableManager<PathSuite>::addRef(const std::string & guid)
         //LG(INFO, "ReferentiableManager<PathSuite>::addRef : new element inserted");
     }
 
-    //LG(INFO, "ReferentiableManager<PathSuite>::addRef(%s) returns %d", (guid.c_str() ? guid.c_str() : "NULL"), res.first->second);
+    //LG(INFO, "ReferentiableManager<PathSuite>::addRef(%s) returns %d", (guid.c_str() ? guid.c_str() : "nullptr"), res.first->second);
     return res.first->second;
 }
 
 int ReferentiableManager<PathSuite>::removeRef(const std::string & guid)
 {
-    //LG(INFO, "ReferentiableManager<PathSuite>::removeRef(%s)", (guid.c_str() ? guid.c_str() : "NULL"));
+    //LG(INFO, "ReferentiableManager<PathSuite>::removeRef(%s)", (guid.c_str() ? guid.c_str() : "nullptr"));
 
     int res = 0;
 
@@ -302,7 +302,7 @@ int ReferentiableManager<PathSuite>::removeRef(const std::string & guid)
         LG(ERR, "ReferentiableManager<PathSuite>::removeRef : element not found");
     }
 
-    //LG(INFO, "ReferentiableManager<PathSuite>::removeRef(%s) returns %d", (guid.c_str() ? guid.c_str() : "NULL"), res);
+    //LG(INFO, "ReferentiableManager<PathSuite>::removeRef(%s) returns %d", (guid.c_str() ? guid.c_str() : "nullptr"), res);
     return res;
 }
 
@@ -361,7 +361,7 @@ void ReferentiableManager<PathSuite>::LoadIntegratedPaths()
                 ps->SetRawPath(it2->second);
             else
             {
-                LG(ERR, "ReferentiableManager<PathSuite>::LoadIntegratedPaths : associated rawPath is NULL (uuid: %s)", sRawPathGUID.c_str());
+                LG(ERR, "ReferentiableManager<PathSuite>::LoadIntegratedPaths : associated rawPath is nullptr (uuid: %s)", sRawPathGUID.c_str());
                 delete ps;
                 continue;
             }
@@ -413,7 +413,7 @@ void ReferentiableManager<PathSuite>::LoadRegularizedPaths()
                 ps->SetIntPath(it2->second);
             else
             {
-                LG(ERR, "ReferentiableManager<PathSuite>::LoadIntegratedPaths : associated rawPath is NULL (uuid: %s)", sIntegratedPathGUID.c_str());
+                LG(ERR, "ReferentiableManager<PathSuite>::LoadIntegratedPaths : associated rawPath is nullptr (uuid: %s)", sIntegratedPathGUID.c_str());
                 delete ps;
                 continue;
             }
@@ -441,7 +441,7 @@ void ReferentiableManager<PathSuite>::LoadRegularizedPaths()
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadRegularizedPaths end");
 }
 
-ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::g_pRefManager = NULL;
+ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::g_pRefManager = nullptr;
 
 
 ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::getInstance()
@@ -453,7 +453,7 @@ ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::getInstance()
 Referentiable* ReferentiableManager<PathSuite>::newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bVisible, bool bFinalize)
 {
     /*LG(INFO, "ReferentiableManager<PathSuite>::newReferentiable(%s, %d guids) begin",
-        (nameHint.c_str() ? nameHint.c_str() : "NULL"),
+        (nameHint.c_str() ? nameHint.c_str() : "nullptr"),
         guids.size());
         */
 

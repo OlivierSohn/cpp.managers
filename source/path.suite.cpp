@@ -48,9 +48,9 @@ void PathSuite::Initialize()
 
 PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & guid, const std::string & nameHint) :
 Referentiable(pm, guid, nameHint),
-m_rawPath(NULL),
-m_integratedPath(NULL),
-m_regularizedPath(NULL)
+m_rawPath(nullptr),
+m_integratedPath(nullptr),
+m_regularizedPath(nullptr)
 {
 }
 
@@ -207,7 +207,7 @@ PathError PathSuite::Play()
     if (m_curveMotion)
     {
         if( auto wv = WorldView::hasInstance() ) {
-            wv->editPlayer().setCurves({m_curveMotion.get(), NULL});
+            wv->editPlayer().setCurves({m_curveMotion.get(), nullptr});
             wv->usePlayer(true);
             if(auto * c = Timeline::gCamera()) {
                 lsm(c->motion()).StopInTime(0.f);
@@ -235,7 +235,7 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
         if( ret == PE_SUCCESS )
         {
             if( auto wv = WorldView::hasInstance() ) {
-                wv->editPlayer().setCurves({m_discreteCurveMotion.get(), NULL});
+                wv->editPlayer().setCurves({m_discreteCurveMotion.get(), nullptr});
                 wv->usePlayer(true);
                 if(auto * c = Timeline::gCamera()) {
                     lsm(c->motion()).StopInTime(0.f);
@@ -306,7 +306,7 @@ void PathSuite::UnPlay()
 {
     if( auto wv = WorldView::hasInstance() ) {
         wv->usePlayer(false);
-        wv->editPlayer().setCurves({NULL, NULL});
+        wv->editPlayer().setCurves({nullptr, nullptr});
     } else {
         LG(WARN, "PathSuite::UnPlay : Initialize WorldView before call if you want the player to play the path in real time");
     }
@@ -448,7 +448,7 @@ eResult PathSuite::PathSuitePersist::doSave()
     }
     else
     {
-        LG(WARN, "PathSuitePersist::doSave : rawPath is NULL");
+        LG(WARN, "PathSuitePersist::doSave : rawPath is nullptr");
     }
 
     if (m_pPathSuite.m_integratedPath)
@@ -459,7 +459,7 @@ eResult PathSuite::PathSuitePersist::doSave()
     }
     else
     {
-        LG(WARN, "PathSuitePersist::doSave : intPath is NULL");
+        LG(WARN, "PathSuitePersist::doSave : intPath is nullptr");
     }
 
     if (m_pPathSuite.m_regularizedPath)
@@ -470,7 +470,7 @@ eResult PathSuite::PathSuitePersist::doSave()
     }
     else
     {
-        LG(WARN, "PathSuitePersist::doSave : regPath is NULL");
+        LG(WARN, "PathSuitePersist::doSave : regPath is nullptr");
     }
 
     return ReferentiablePersist::doSave();
@@ -478,7 +478,7 @@ eResult PathSuite::PathSuitePersist::doSave()
 
 void PathSuite::PathSuiteLoad::LoadStringForKey(char key, std::string & sVal)
 {
-    //LG(INFO, "PathSuiteLoad::LoadStringForKey(%d, %s) begin", key, (sVal.c_str() ? sVal.c_str():"NULL"));
+    //LG(INFO, "PathSuiteLoad::LoadStringForKey(%d, %s) begin", key, (sVal.c_str() ? sVal.c_str():"nullptr"));
 
     switch (key)
     {
@@ -499,7 +499,7 @@ void PathSuite::PathSuiteLoad::LoadStringForKey(char key, std::string & sVal)
         break;
     }
 
-    //LG(INFO, "PathSuiteLoad::LoadStringForKey(%d, %s) end", key, (sVal.c_str() ? sVal.c_str() : "NULL"));
+    //LG(INFO, "PathSuiteLoad::LoadStringForKey(%d, %s) end", key, (sVal.c_str() ? sVal.c_str() : "nullptr"));
 }
 
 PathSuite::PathSuiteLoad::PathSuiteLoad(PathSuite&pathSuite) :
