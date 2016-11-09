@@ -509,11 +509,10 @@ m_pPathSuite(pathSuite)
 
 eResult PathSuite::PathSuiteLoad::Load(std::string & sRawPathGuid, std::string & sIntPathGuid, std::string & sRegPathGuid)
 {
-    //LG(INFO, "PathSuiteLoad::Load begin");
-
-    eResult ret = ReadAllKeys();
-    if( unlikely(ret != ILE_SUCCESS))
-        goto end;
+    auto ret = ReadAllKeys();
+    if( ret != ILE_SUCCESS) {
+        return ret;
+    }
 
     sRawPathGuid = m_rawPathGuid;
     sIntPathGuid = m_intPathGuid;
@@ -522,23 +521,22 @@ eResult PathSuite::PathSuiteLoad::Load(std::string & sRawPathGuid, std::string &
     if( unlikely(sRawPathGuid.empty()))
     {
         LG(ERR, "PathSuiteLoad::Load : rawPathGuid not found");
-        ret = ILE_OBJECT_INVALID;
+        return ILE_OBJECT_INVALID;
     }
 
     if( unlikely(sIntPathGuid.empty()))
     {
         LG(ERR, "PathSuiteLoad::Load : intPathGuid not found");
-        ret = ILE_OBJECT_INVALID;
+        return ILE_OBJECT_INVALID;
     }
 
     if( unlikely(sRegPathGuid.empty()))
     {
         LG(ERR, "PathSuiteLoad::Load : regPathGuid not found");
-        ret = ILE_OBJECT_INVALID;
+        return ILE_OBJECT_INVALID;
     }
-end:
-    //LG(INFO, "PathSuiteLoad::Load returns %d", ret);
-    return ret;
+    
+    return ILE_SUCCESS;
 }
 
 void PathSuite::SetPaths(rawPath * rawPath, integratedPath * intPath, regularizedPath * regPath)
