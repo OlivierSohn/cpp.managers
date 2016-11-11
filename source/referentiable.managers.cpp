@@ -14,6 +14,7 @@
 #include "constraint.iterative.h"
 #include "enum.scandirection.h"
 #include "enum.postrender.h"
+#include "enum.focusmodel.h"
 #include "wmoperation.spec.draw.h"
 #include "wmoperation.spec.png.h"
 #include "wmoperation.spec.text.h"
@@ -149,6 +150,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(68, postRenderParam,           "Post Render Params","Post Render");
     MAKE_REF_MANAGER(69, GenericMotion,           "Generic Motions","Generic Motion");
     MAKE_REF_MANAGER(70, FramedMotion,           "Framed Motions","Framed Motion");
+    MAKE_REF_MANAGER(71, focusModelParam,           "Focus Model Params","Focus Model");
 
     int InitializeRefManagers(Referentiables & rs )
     {
@@ -231,6 +233,7 @@ namespace imajuscule {
         rs.regManager(ReferentiableManager<postRenderParam>::getInstance());
         rs.regManager(ReferentiableManager<GenericMotion>::getInstance());
         rs.regManager(ReferentiableManager<FramedMotion>::getInstance());
+        rs.regManager(ReferentiableManager<focusModelParam>::getInstance());
         
         // and root must be initialized once all ref managers are registered
         if(root) {
