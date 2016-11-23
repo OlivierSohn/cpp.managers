@@ -32,18 +32,19 @@ namespace imajuscule
         ReferentiableManager();
         virtual ~ReferentiableManager();
 
-        Referentiable* newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bVisible, bool bFinalize) override;
+        ref_unique_ptr<Referentiable> newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bVisible, bool bFinalize) override;
 
         void doTearDown() override;
     public:
-        virtual PathSuite* newPath(const std::string & nameHint, 
+        ref_unique_ptr<PathSuite> newPath(const std::string & nameHint,
             const std::vector<std::string> & guids, 
             double freqCutoff = 1.0,
             bool adaptive = false,
             integratedPath::IntegrationMode intmode = integratedPath::TRAPEZOIDAL);
-        virtual PathSuite* newPathVariant(PathSuite* finalizedSuite, const std::string & nameHint, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode, const std::vector<std::string> & guids);
+        
+        ref_unique_ptr<PathSuite> newPathVariant(PathSuite * finalizedSuite, const std::string & nameHint, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode, const std::vector<std::string> & guids);
 
-        virtual PathSuite* newPathByCompression(PathSuite* finalizedSuite, const std::string & nameHint, const std::vector<std::string> & guids);
+        ref_unique_ptr<PathSuite> newPathByCompression(PathSuite * finalizedSuite, const std::string & nameHint, const std::vector<std::string> & guids);
 
     private:
         // guid - path
@@ -53,7 +54,7 @@ namespace imajuscule
         // guid of elementary path - nRefs
         typedef std::map < std::string, int > refMap;
         
-        std::vector<ref_unique_ptr<PathSuite>> path_suites;
+        std::vector<ref_shared_ptr<PathSuite>> path_suites;
 
         int addRef(const std::string & guid);
         int removeRef(const std::string & guid);

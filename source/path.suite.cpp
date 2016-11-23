@@ -1,18 +1,16 @@
 #include <cstring> // memcpy
 
-#include "path.suite.h"
-#include "path.manager.h"
-#include "gl.model.h"
-#include "gl.view.world.h"
-#include "cg.math.acc.record.h"
-#include "motion/curve.continuous.regularized.h"
-#include "motion/curve.discrete.integrated.h"
-#include "motion/layer.curve.discrete.h"
-#include "motion/layer.curve.continuous.h"
 #include "os.log.h"
 #include "os.log.format.h"
 
+#include "gl.model.h"
+
 #include "motion/constraint.translation.onSphereLookAtCenter.h"
+
+#include "path.manager.h"
+#include "gl.view.world.h"
+
+#include "path.suite.h"
 
 
 const int KEY_RAWPATH_GUID       = 'f'; // string
@@ -43,7 +41,7 @@ m_regularizedPath(regPath)
 
 void PathSuite::Initialize()
 {
-    m_discreteCurveMotion.reset( DiscreteCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_integratedPath->lastValueTraversal(), m_integratedPath).release());
+    m_discreteCurveMotion = DiscreteCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_integratedPath->lastValueTraversal(), m_integratedPath);
 }
 
 PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & guid, const std::string & nameHint) :
@@ -66,26 +64,21 @@ void PathSuite::AddAccelerationRot(accelerationData & sensordata)
 
 PathError PathSuite::Finalize(unsigned int fps)
 {
-    PathError ret = PE_SUCCESS;
-    if( !m_integratedPath )
-    {
-        ret = PE_NOT_FOUND;
+    if( !m_integratedPath ) {
+        return PE_NOT_FOUND;
     }
-    else
-    {
-        m_integratedPath->finalize();
-        ret = m_regularizedPath->initializeForFps(fps);
-        if (ret == PE_SUCCESS)
-        {
-            ret = m_rawPath->finalize();
-            if (ret == PE_SUCCESS)
-            {
-                m_curveMotion.reset(ContinuousCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_regularizedPath->traversal(), m_regularizedPath).release());
-            }
-        }
+    m_integratedPath->finalize();
+    auto ret = m_regularizedPath->initializeForFps(fps);
+    if (ret != PE_SUCCESS) {
+        return ret;
     }
+    ret = m_rawPath->finalize();
+    if (ret != PE_SUCCESS) {
+        return ret;
+    }
+    m_curveMotion = ContinuousCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_regularizedPath->traversal(), m_regularizedPath);
     
-    return ret;
+    return PE_SUCCESS;
 }
 
 /*void PathSuite::AddRot(RotationData &rotdata)

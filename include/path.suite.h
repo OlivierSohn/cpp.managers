@@ -1,16 +1,18 @@
 #pragma once
 
+#include <string>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 
-#include "motion/curve.discrete.integrated.h"
+#include "referentiable.h"
+
 #include "cg.math.acc.record.h"
+#include "motion/layer.curve.discrete.h"
+#include "motion/layer.curve.continuous.h"
+#include "motion/curve.discrete.integrated.h"
 #include "motion/curve.continuous.regularized.h"
 #include "motion/constraint.translation.h"
-#include <string>
-
-#include "referentiable.h"
 
 namespace imajuscule
 {
@@ -67,8 +69,8 @@ namespace imajuscule
         rawPath* m_rawPath;
         integratedPath* m_integratedPath;
         regularizedPath* m_regularizedPath;
-        ref_unique_ptr<CurveMotion> m_curveMotion;
-        ref_unique_ptr<CurveMotion> m_discreteCurveMotion;
+        ref_shared_ptr<ContinuousCurveMotion> m_curveMotion;
+        ref_shared_ptr<DiscreteCurveMotion> m_discreteCurveMotion;
 
         // unpersisted for now : result of constraint is applied in ipData.
         // in the future it will be persisted, result of constraint will not be applied in ipData (constraint will be applied each time)
