@@ -160,7 +160,7 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
     using namespace StorageStuff;
     for ( auto const & guid : listFilenames(directory_pathsuites()) )
     {
-        auto ps = make_shared_ref<PathSuite>(this, guid, std::string("path"));
+        auto ps = make_intrusive_ptr<PathSuite>(this, guid, std::string("path"));
         
         std::string Raw, Int, Reg;
         PathError ret = ps->LoadFromFile(Raw, Int, Reg);
