@@ -54,7 +54,7 @@ namespace imajuscule
         // guid of elementary path - nRefs
         typedef std::map < std::string, int > refMap;
         
-        std::vector<ref_shared_ptr<PathSuite>> path_suites;
+        std::vector<intrusive_ptr<PathSuite>> path_suites;
 
         int addRef(const std::string & guid);
         int removeRef(const std::string & guid);
