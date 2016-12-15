@@ -424,7 +424,7 @@ ReferentiableManager<PathSuite> * ReferentiableManager<PathSuite>::getInstance()
 }
 
 
-ref_unique_ptr<Referentiable> ReferentiableManager<PathSuite>::newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bVisible, bool bFinalize)
+ref_unique_ptr<Referentiable> ReferentiableManager<PathSuite>::newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bFinalize)
 {
     /*LG(INFO, "ReferentiableManager<PathSuite>::newReferentiable(%s, %d guids) begin",
         (nameHint.c_str() ? nameHint.c_str() : "nullptr"),
@@ -441,9 +441,6 @@ ref_unique_ptr<Referentiable> ReferentiableManager<PathSuite>::newReferentiableI
     }
 
     auto curAnim = make_unique_ref<PathSuite>(this, guid, nameHint);
-    if (bVisible) {
-        curAnim->Hide();
-    }
     if ( unlikely(!ComputeSessionName(curAnim.get(), bFinalize))) {
         LG(ERR, "ReferentiableManager<PathSuite>::newReferentiable : ComputeSessionName failed (uuid: %s)", guid.c_str());
         return {};

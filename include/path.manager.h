@@ -32,7 +32,7 @@ namespace imajuscule
         ReferentiableManager();
         virtual ~ReferentiableManager();
 
-        ref_unique_ptr<Referentiable> newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bVisible, bool bFinalize) override;
+        ref_unique_ptr<Referentiable> newReferentiableInternal(const std::string & nameHint, const std::vector<std::string> & guids, bool bFinalize) override;
 
         void doTearDown() override;
     public:
