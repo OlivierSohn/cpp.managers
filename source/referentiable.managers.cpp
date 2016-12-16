@@ -80,10 +80,10 @@ namespace imajuscule {
     /*template<>*/ const char * ReferentiableManager<PathSuite>::UIName()       { return "Paths"; }
     /*template<>*/ unsigned int ReferentiableManager<PathSuite>::index()  { return 0; }
 
-    MAKE_REF_MANAGER(1,  Animation<float>,      "Animations Float", "Anim Flt");
-    MAKE_REF_MANAGER(2,  Animation<int>,        "Animations Int",   "Anim Int");
-    MAKE_REF_MANAGER(3,  Animation<bool>,       "Animations Bool",  "Anum Bool");
-    MAKE_REF_MANAGER(4,  Animation<std::string>,"Animations String","Anim Str");
+    MAKE_REF_MANAGER(1,  Animation<float>,      "Animations Float", "Anim_Flt"); // cannot have spaces so that the session name is usable in formulas
+    MAKE_REF_MANAGER(2,  Animation<int>,        "Animations Int",   "Anim_Int");
+    MAKE_REF_MANAGER(3,  Animation<bool>,       "Animations Bool",  "Anum_Bool");
+    MAKE_REF_MANAGER(4,  Animation<std::string>,"Animations String","Anim_Str");
     MAKE_REF_MANAGER(5,  Param<float>,          "Params Float",     "P");
     MAKE_REF_MANAGER(6,  Param<int>,            "Params Int",       "PI");
     MAKE_REF_MANAGER(7,  Param<bool>,           "Params Bool",      "PB");
@@ -128,29 +128,29 @@ namespace imajuscule {
     MAKE_REF_MANAGER(46, Text,                  "Texts",            "Text");
     MAKE_REF_MANAGER(47, Timeline,              "Timelines",        "Timeline");
 	MAKE_REF_MANAGER(48, GeoTransform,			"GeoTs",            "GeoT");
-	MAKE_REF_MANAGER(49, STAIEffectOp,			"Effect Ops",       "Effect Op");
-	MAKE_REF_MANAGER(50, EffectOp,				"2Effect Ops",      "2Effect Op");
+	MAKE_REF_MANAGER(49, STAIEffectOp,			"Effect Ops",       "Effect_Op");
+	MAKE_REF_MANAGER(50, EffectOp,				"2Effect Ops",      "2Effect_Op");
 	MAKE_REF_MANAGER(51, EffectSTAIBody,		"Bodys Effect",    "Effect");
     MAKE_REF_MANAGER(52, Effect,				"Effects",          "Effect");
     MAKE_REF_MANAGER(53, InterpolationParam, 	"Interpolations",   "Interpolation");
-    MAKE_REF_MANAGER(54, ScanDirectionParam, 	"Scan_Directions",  "Scan Direction");
-    MAKE_REF_MANAGER(55, Png,                   "Png Import Params","Png Import");
+    MAKE_REF_MANAGER(54, ScanDirectionParam, 	"Scan_Directions",  "Scan_Direction");
+    MAKE_REF_MANAGER(55, Png,                   "Png Import Params","Png_Import");
     MAKE_REF_MANAGER(56, SpecWMPng,             "SpecWMSPng",       "Png");
     MAKE_REF_MANAGER(57, FilePathParam,         "FilePaths",        "FilePath");
     MAKE_REF_MANAGER(58, Sphere,                "Spheres",          "Sphere");
     MAKE_REF_MANAGER(59, ParallellepipedRect,   "ParRects",         "ParRect");
     MAKE_REF_MANAGER(60, Point3D,               "3dPoints",         "Point");
     MAKE_REF_MANAGER(61, Constraint,            "Constraints",       "Constraint");
-    MAKE_REF_MANAGER(62, IterativeConstraint,   "ITER Constraints",    "ITER Constraint");
+    MAKE_REF_MANAGER(62, IterativeConstraint,   "ITER Constraints",    "ITER_Constraint");
     MAKE_REF_MANAGER(63, Human,                 "Humans",           "Human");
-    MAKE_REF_MANAGER(64, MotionMixer,           "Motion Mixers",    "Motion Mixer");
-    MAKE_REF_MANAGER(65, RigidBodyMotion,       "Rigid Body Motions","Rigid Body Motion");
+    MAKE_REF_MANAGER(64, MotionMixer,           "Motion Mixers",    "Motion_Mixer");
+    MAKE_REF_MANAGER(65, RigidBodyMotion,       "Rigid Body Motions","Rigid_Body_Motion");
     MAKE_REF_MANAGER(66, PostExtrude,           "PostExtrudes","PostExtrude");
     MAKE_REF_MANAGER(67, Render,           "Renders","Render");
-    MAKE_REF_MANAGER(68, postRenderParam,           "Post Render Params","Post Render");
-    MAKE_REF_MANAGER(69, GenericMotion,           "Generic Motions","Generic Motion");
-    MAKE_REF_MANAGER(70, FramedMotion,           "Framed Motions","Framed Motion");
-    MAKE_REF_MANAGER(71, focusModelParam,           "Focus Model Params","Focus Model");
+    MAKE_REF_MANAGER(68, postRenderParam,           "Post Render Params","Post_Render");
+    MAKE_REF_MANAGER(69, GenericMotion,           "Generic Motions","Generic_Motion");
+    MAKE_REF_MANAGER(70, FramedMotion,           "Framed Motions","Framed_Motion");
+    MAKE_REF_MANAGER(71, focusModelParam,           "Focus Model Params","Focus_Model");
 
     int InitializeRefManagers(Referentiables & rs )
     {
