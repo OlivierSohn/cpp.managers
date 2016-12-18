@@ -1,16 +1,3 @@
-#pragma once
-
-#include <list>
-#include <string>
-#include <map>
-
-#include "referentiable.manager.h"
-
-#include "path.suite.h"
-
-#include "cg.math.acc.record.h"
-#include "motion/curve.discrete.integrated.h"
-#include "motion/curve.continuous.regularized.h"
 
 namespace imajuscule
 {

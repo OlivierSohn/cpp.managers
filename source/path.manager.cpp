@@ -1,19 +1,3 @@
-#include <algorithm>
-#include <memory>
-
-#include "os.log.h"
-
-#include "os.storage.h"
-
-#include "globals.h"
-
-#include "referentiable.h"
-
-#include "cg.math.acc.record.h"
-#include "motion/curve.continuous.regularized.h"
-#include "motion/curve.discrete.integrated.h"
-
-#include "path.manager.h"
 
 namespace imajuscule {
 

@@ -1,18 +1,3 @@
-#pragma once
-
-#include <string>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/quaternion.hpp>
-
-#include "referentiable.h"
-
-#include "cg.math.acc.record.h"
-#include "motion/layer.curve.discrete.h"
-#include "motion/layer.curve.continuous.h"
-#include "motion/curve.discrete.integrated.h"
-#include "motion/curve.continuous.regularized.h"
-#include "motion/constraint.translation.h"
 
 namespace imajuscule
 {

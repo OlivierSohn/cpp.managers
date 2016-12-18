@@ -1,17 +1,3 @@
-#include <cstring> // memcpy
-
-#include "os.log.h"
-#include "os.log.format.h"
-
-#include "gl.model.h"
-
-#include "motion/constraint.translation.onSphereLookAtCenter.h"
-
-#include "path.manager.h"
-#include "gl.view.world.h"
-
-#include "path.suite.h"
-
 
 const int KEY_RAWPATH_GUID       = 'f'; // string
 const int KEY_INTPATH_GUID       = 'g'; // string
