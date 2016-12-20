@@ -1,5 +1,5 @@
 
 
 #include "test.xcconfig"
-#include "../../Shared/xcode.config/ios.xcconfig"
+#include "../../shared/xcode.config/ios.xcconfig"
 
