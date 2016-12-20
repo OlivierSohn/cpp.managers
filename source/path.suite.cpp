@@ -1,7 +1,7 @@
 
-const int KEY_RAWPATH_GUID       = 'f'; // string
-const int KEY_INTPATH_GUID       = 'g'; // string
-const int KEY_REGPATH_GUID       = 'h'; // string
+constexpr int KEY_RAWPATH_GUID       = 'f'; // string
+constexpr int KEY_INTPATH_GUID       = 'g'; // string
+constexpr int KEY_REGPATH_GUID       = 'h'; // string
 
 
 using namespace imajuscule;
