@@ -84,6 +84,7 @@ namespace imajuscule {
     MAKE_REF_MANAGER(69, GenericMotion,           "Generic Motions","Generic_Motion");
     MAKE_REF_MANAGER(70, FramedMotion,           "Framed Motions","Framed_Motion");
     MAKE_REF_MANAGER(71, focusModelParam,           "Focus Model Params","Focus_Model");
+    MAKE_REF_MANAGER(72, speakParam,           "Speak Params","Speak");
 
     int InitializeRefManagers(Referentiables & rs )
     {
@@ -167,6 +168,7 @@ namespace imajuscule {
         rs.regManager(ReferentiableManager<GenericMotion>::getInstance());
         rs.regManager(ReferentiableManager<FramedMotion>::getInstance());
         rs.regManager(ReferentiableManager<focusModelParam>::getInstance());
+        rs.regManager(ReferentiableManager<speakParam>::getInstance());
         
         // and root must be initialized once all ref managers are registered
         if(root) {
