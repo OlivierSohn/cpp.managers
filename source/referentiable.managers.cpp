@@ -7,6 +7,7 @@ template<> unsigned int ReferentiableManager<t>::index()  { return vIndex; }
 
 
 namespace imajuscule {
+    using namespace rigidbody;
     
     template class ReferentiableManager<PathSuite>;
     /*template<>*/ const char * ReferentiableManager<PathSuite>::defaultNameHint()       { return "Path"; }
