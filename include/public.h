@@ -1,9 +1,9 @@
 #pragma once
 
+#include "../../algorithms/include/public.h"
 #include "../../os.log/include/public.h"
 #include "../../glsl.composer/include/public.h"
 #include "../../gl.platform/include/public.h"
-#include "../../algorithms/include/public.h"
 #include "../../tp.muparser/include/public.h"
 #include "../../os.storage/include/public.h"
 #include "../../model/include/public.h"
