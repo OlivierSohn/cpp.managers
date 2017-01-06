@@ -9,8 +9,8 @@ namespace imajuscule
         virtual ~PathSuite();
 
     public:
-        PathSuite(ReferentiableManagerBase* pm, const std::string & guid, const std::string & nameHint);
-        PathSuite(ReferentiableManagerBase* pm, const std::string & name, const std::string & guid, rawPath * rawPath, integratedPath* intPath, regularizedPath* regPath);
+        PathSuite(ReferentiableManagerBase* pm, std::string guid, const std::string & nameHint);
+        PathSuite(ReferentiableManagerBase* pm, std::string const & name, std::string guid, rawPath * rawPath, integratedPath* intPath, regularizedPath* regPath);
 
         PathError Record(bool bUseTranslationConstraint = true);
         PathError SetTransforms(const glm::dquat & rotDeviceToCamera, const glm::dquat & rotAttitude);

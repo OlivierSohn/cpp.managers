@@ -142,14 +142,14 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
     //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites begin");
 
     using namespace StorageStuff;
-    for ( auto const & guid : listFilenames(directory_pathsuites()) )
+    for ( auto guid : listFilenames(directory_pathsuites()) )
     {
-        auto ps = make_intrusive<PathSuite>(this, guid, std::string("path"));
+        auto ps = make_intrusive<PathSuite>(this, std::move(guid), std::string("path"));
         
         std::string Raw, Int, Reg;
         PathError ret = ps->LoadFromFile(Raw, Int, Reg);
         if ( unlikely(ret != PE_SUCCESS)) {
-            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ps->LoadFromFile failed (uuid: %s, err: %d)", guid.c_str(), ret);
+            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ps->LoadFromFile failed (err: %d)", ret);
             continue;
         }
 
@@ -196,18 +196,18 @@ void ReferentiableManager<PathSuite>::LoadPathSuites()
 
         ret = ps->FinalizeRecord();
         if ( unlikely(ret != PE_SUCCESS)) {
-            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ps->FinalizeRecord failed (uuid: %s, err: %d)", guid.c_str(), ret);
+            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ps->FinalizeRecord failed (err: %d)", ret);
             continue;
         }
         
         auto ref = static_pointer_cast<Referentiable>(ps);
         if( unlikely(!ComputeSessionName(ref, true)) ) {
-            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName failed (uuid: %s)", guid.c_str());
+            LG(ERR, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName failed");
             continue;
         }
         else
         {
-            //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName success (uuid: %s)", guid.c_str());
+            //LG(INFO, "ReferentiableManager<PathSuite>::LoadPathSuites : ComputeSessionName success");
         }
         
         path_suites.emplace_back(std::move(ps));

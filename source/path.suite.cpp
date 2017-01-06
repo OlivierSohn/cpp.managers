@@ -16,8 +16,8 @@ void PathSuite::ClearConstraints()
     m_constraints.clear();
 }
 
-PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & name, const std::string & guid, rawPath* rawPath, integratedPath* intPath, regularizedPath* regPath) :
-Referentiable(pm, guid,name),
+PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & name, std::string guid, rawPath* rawPath, integratedPath* intPath, regularizedPath* regPath) :
+Referentiable(pm, std::move(guid), name),
 m_rawPath(rawPath),
 m_integratedPath(intPath),
 m_regularizedPath(regPath)
@@ -30,8 +30,8 @@ void PathSuite::Initialize()
     m_discreteCurveMotion = DiscreteCurveMotion::instantiate(CurveMotion::POSITION_AND_ROTATION, m_integratedPath->lastValueTraversal(), m_integratedPath);
 }
 
-PathSuite::PathSuite(ReferentiableManagerBase * pm, const std::string & guid, const std::string & nameHint) :
-Referentiable(pm, guid, nameHint),
+PathSuite::PathSuite(ReferentiableManagerBase * pm, std::string guid, const std::string & nameHint) :
+Referentiable(pm, std::move(guid), nameHint),
 m_rawPath(nullptr),
 m_integratedPath(nullptr),
 m_regularizedPath(nullptr)
