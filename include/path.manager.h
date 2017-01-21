@@ -25,8 +25,7 @@ namespace imajuscule
     public:
         ref_unique_ptr<PathSuite> newPath(const std::string & nameHint,
             const std::vector<std::string> & guids, 
-            double freqCutoff = 1.0,
-            bool adaptive = false,
+            float freqCutoff = 1.f,
             integratedPath::IntegrationMode intmode = integratedPath::TRAPEZOIDAL);
         
         ref_unique_ptr<PathSuite> newPathVariant(PathSuite * finalizedSuite, const std::string & nameHint, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode, const std::vector<std::string> & guids);

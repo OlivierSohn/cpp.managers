@@ -16,7 +16,7 @@ ReferentiableManager<PathSuite>::~ReferentiableManager() {
     A(g_pRefManager == this);
 }
 
-ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPath(const std::string & nameHint, const std::vector<std::string> & guids, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode)
+ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPath(const std::string & nameHint, const std::vector<std::string> & guids, float freqCutoff, integratedPath::IntegrationMode intmode)
 {
     /*LG(INFO, "ReferentiableManager<PathSuite>::newPath(%s, %d guids, %f, %s, %d) begin",
         (nameHint.c_str() ? nameHint.c_str() : "nullptr"),
@@ -71,7 +71,7 @@ ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPath(const std::st
         }
     }
     
-    std::unique_ptr<integratedPath> newIntPath(new integratedPath(guid2, newRawPath.get(), freqCutoff, adaptive, intmode));
+    std::unique_ptr<integratedPath> newIntPath(new integratedPath(guid2, newRawPath.get(), freqCutoff, intmode));
     {
         std::pair<integratedPaths::iterator, bool> resInsert = m_integratedPaths.insert(integratedPaths::value_type(guid2, newIntPath.get()));
         if ( unlikely(!resInsert.second))
