@@ -220,7 +220,7 @@ PathError PathSuite::Record(bool bUseTranslationConstraint)
                     lsm(c->motion()).StopInTime(0.f);
                 }
             } else {
-                LG(WARN, "PathSuite::Record : Initialize WorldView before call if you want the player to play the path in real time");
+                //LG(WARN, "PathSuite::Record : Initialize WorldView before call if you want the player to play the path in real time");
             }
 
             ClearConstraints();
@@ -287,7 +287,7 @@ void PathSuite::UnPlay()
         wv->usePlayer(false);
         wv->editPlayer().setCurves({nullptr, nullptr});
     } else {
-        LG(WARN, "PathSuite::UnPlay : Initialize WorldView before call if you want the player to play the path in real time");
+        //LG(WARN, "PathSuite::UnPlay : Initialize WorldView before call if you want the player to play the path in real time");
     }
 }
 
@@ -300,20 +300,15 @@ PathError PathSuite::FinalizeRecord()
 
 PathError PathSuite::CountFrames(int & nFrames)
 {
-    if( !m_regularizedPath )
-    {
+    if( !m_regularizedPath ) {
         return PE_NOT_FOUND;
     }
     
-    {
-        PositionTraversal * t = m_regularizedPath->traversal();
-        if( !t )
-        {
-            return PE_NOT_FINALIZED;
-        }
-        
-        nFrames = t->countUniqueValues();
+    auto * t = m_regularizedPath->traversal();
+    if( !t ) {
+        return PE_NOT_FINALIZED;
     }
+    nFrames = t->countUniqueValues();
     
     return PE_SUCCESS;
 }
@@ -372,7 +367,7 @@ PathError PathSuite::LoadFromFile(std::string & sRawPathGuid, std::string & sInt
 
 PathError PathSuite::RemoveFilesRecurse() {
     PathError ret = PE_SUCCESS;
-    std::string path = directory_pathsuites().toString() + "/" + guid();
+    auto path = directory_pathsuites().toString() + "/" + guid();
     if( StorageStuff::fileExists(path)) {
         auto res = StorageStuff::removeFile(path);
         if(res != ILE_SUCCESS) {
