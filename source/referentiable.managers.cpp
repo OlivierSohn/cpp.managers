@@ -7,13 +7,10 @@ template<> unsigned int ReferentiableManager<t>::index()  { return vIndex; }
 
 
 namespace imajuscule {
+    MAKE_REF_MANAGER(0, ReferentiableRoot,     "Roots",             "Root");
+#ifndef ONLY_ROOT
     using namespace rigidbody;
     
-    template class ReferentiableManager<PathSuite>;
-    /*template<>*/ const char * ReferentiableManager<PathSuite>::defaultNameHint()       { return "Path"; }
-    /*template<>*/ const char * ReferentiableManager<PathSuite>::UIName()       { return "Paths"; }
-    /*template<>*/ unsigned int ReferentiableManager<PathSuite>::index()  { return 0; }
-
     MAKE_REF_MANAGER(1,  Animation<float>,      "Animations Float", "Anim_Flt"); // cannot have spaces so that the session name is usable in formulas
     MAKE_REF_MANAGER(2,  Animation<int>,        "Animations Int",   "Anim_Int");
     MAKE_REF_MANAGER(3,  Animation<bool>,       "Animations Bool",  "Anum_Bool");
@@ -57,7 +54,14 @@ namespace imajuscule {
     MAKE_REF_MANAGER(41, RoundedWM,             "Rounded WMS",      "Rounded WM");
     MAKE_REF_MANAGER(42, WireModel,             "WMs",               "WM");
     MAKE_REF_MANAGER(43, WireTextModel,         "WTMs",              "WTM");
-    MAKE_REF_MANAGER(44, ReferentiableRoot,     "Roots",             "Root");
+    
+    
+    template class ReferentiableManager<PathSuite>;
+    /*template<>*/ const char * ReferentiableManager<PathSuite>::defaultNameHint()       { return "Path"; }
+    /*template<>*/ const char * ReferentiableManager<PathSuite>::UIName()       { return "Paths"; }
+    /*template<>*/ unsigned int ReferentiableManager<PathSuite>::index()  { return 44; }
+
+    
     MAKE_REF_MANAGER(45, SpecWMText,            "SpecWmsText",      "SpecText");
     MAKE_REF_MANAGER(46, Text,                  "Texts",            "Text");
     MAKE_REF_MANAGER(47, Timeline,              "Timelines",        "Timeline");
@@ -86,7 +90,8 @@ namespace imajuscule {
     MAKE_REF_MANAGER(70, FramedMotion,           "Framed Motions","Framed_Motion");
     MAKE_REF_MANAGER(71, focusModelParam,           "Focus Model Params","Focus_Model");
     MAKE_REF_MANAGER(72, speakParam,           "Speak Params","Speak");
-
+#endif
+    
     int InitializeRefManagers(Referentiables & rs )
     {
         // the last referentiable to be deinstantiated on cleanup should be the ref root, so
@@ -96,8 +101,9 @@ namespace imajuscule {
         auto root_manager = ReferentiableManager<ReferentiableRoot>::getInstance();
         // ... and we create the root
         auto root = ReferentiableRoot::getInstance();
-
-        rs.regManager(ReferentiableManager<PathSuite>::getInstance());
+        
+        rs.regManager(root_manager);
+#ifndef ONLY_ROOT
         rs.regManager(ReferentiableManager<Animation<float>>::getInstance());
         rs.regManager(ReferentiableManager<Animation<int>>::getInstance());
         rs.regManager(ReferentiableManager<Animation<bool>>::getInstance());
@@ -141,7 +147,7 @@ namespace imajuscule {
         rs.regManager(ReferentiableManager<RoundedWM>::getInstance());
         rs.regManager(ReferentiableManager<WireModel>::getInstance());
         rs.regManager(ReferentiableManager<WireTextModel>::getInstance());
-        rs.regManager(root_manager);
+        rs.regManager(ReferentiableManager<PathSuite>::getInstance());
         rs.regManager(ReferentiableManager<SpecWMText>::getInstance());
         rs.regManager(ReferentiableManager<Text>::getInstance());
         rs.regManager(ReferentiableManager<Timeline>::getInstance());
@@ -170,7 +176,7 @@ namespace imajuscule {
         rs.regManager(ReferentiableManager<FramedMotion>::getInstance());
         rs.regManager(ReferentiableManager<focusModelParam>::getInstance());
         rs.regManager(ReferentiableManager<speakParam>::getInstance());
-        
+#endif
         // and root must be initialized once all ref managers are registered
         if(root) {
             root->initialize();

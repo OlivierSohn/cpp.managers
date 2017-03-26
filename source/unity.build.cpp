@@ -1,5 +1,8 @@
 #include "private.h"
 
-#include "path.manager.cpp"
-#include "path.suite.cpp"
+#ifndef ONLY_ROOT
+# include "path.manager.cpp"
+# include "path.suite.cpp"
+#endif
+
 #include "referentiable.managers.cpp"

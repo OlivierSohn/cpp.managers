@@ -1,12 +1,14 @@
 #pragma once
 
+#include "../../model/include/public.h"
+
+#ifndef ONLY_ROOT
 #include "../../algorithms/include/public.h"
 #include "../../os.log/include/public.h"
 #include "../../glsl.composer/include/public.h"
 #include "../../gl.platform/include/public.h"
 #include "../../tp.muparser/include/public.h"
 #include "../../os.storage/include/public.h"
-#include "../../model/include/public.h"
 #include "../../wiremodeler/include/public.h"
 #include "../../cg.math/include/public.h"
 #include "../../sim.grid/include/public.h"
@@ -21,3 +23,4 @@
 
 #include "path.suite.h"
 #include "path.manager.h"
+#endif
