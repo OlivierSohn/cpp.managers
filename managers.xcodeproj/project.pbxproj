@@ -9,10 +9,20 @@
 /* Begin PBXBuildFile section */
 		097835611D57B05800E47ED3 /* unity.build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 097835601D57B05800E47ED3 /* unity.build.cpp */; };
 		097835621D57B05900E47ED3 /* unity.build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 097835601D57B05800E47ED3 /* unity.build.cpp */; };
+		09C4F7411E8807C30021F3A9 /* unity.build.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 097835601D57B05800E47ED3 /* unity.build.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		09832ECE1C41D110009BC3DF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09C4F7431E8807C30021F3A9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -50,6 +60,9 @@
 		09832EEC1C41D1D7009BC3DF /* path.manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.manager.cpp; sourceTree = "<group>"; };
 		09832EED1C41D1D7009BC3DF /* path.suite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = path.suite.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		09832EEE1C41D1D7009BC3DF /* referentiable.managers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = referentiable.managers.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		09C4F7471E8807C30021F3A9 /* libmanagers.ios.rootonly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmanagers.ios.rootonly.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		09C4F7481E8808310021F3A9 /* ios.onlyroot.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.onlyroot.release.xcconfig; sourceTree = "<group>"; };
+		09C4F7491E8808310021F3A9 /* ios.onlyroot.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ios.onlyroot.debug.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +74,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		09832ECD1C41D110009BC3DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09C4F7421E8807C30021F3A9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -85,6 +105,7 @@
 			children = (
 				09832D621C41C960009BC3DF /* libmanagers.osx.a */,
 				09832ED01C41D110009BC3DF /* libmanagers.ios.a */,
+				09C4F7471E8807C30021F3A9 /* libmanagers.ios.rootonly.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +113,8 @@
 		09832EBB1C41CFC2009BC3DF /* xcode.config */ = {
 			isa = PBXGroup;
 			children = (
+				09C4F7481E8808310021F3A9 /* ios.onlyroot.release.xcconfig */,
+				09C4F7491E8808310021F3A9 /* ios.onlyroot.debug.xcconfig */,
 				09832EBC1C41CFC2009BC3DF /* ios.debug.xcconfig */,
 				09832EBD1C41CFC2009BC3DF /* ios.release.xcconfig */,
 				09832EBE1C41CFC2009BC3DF /* ios.xcconfig */,
@@ -181,6 +204,23 @@
 			productReference = 09832ED01C41D110009BC3DF /* libmanagers.ios.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		09C4F73F1E8807C30021F3A9 /* managers.ios.rootonly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09C4F7441E8807C30021F3A9 /* Build configuration list for PBXNativeTarget "managers.ios.rootonly" */;
+			buildPhases = (
+				09C4F7401E8807C30021F3A9 /* Sources */,
+				09C4F7421E8807C30021F3A9 /* Frameworks */,
+				09C4F7431E8807C30021F3A9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = managers.ios.rootonly;
+			productName = managers.ios;
+			productReference = 09C4F7471E8807C30021F3A9 /* libmanagers.ios.rootonly.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,6 +253,7 @@
 			targets = (
 				09832D611C41C960009BC3DF /* managers.osx */,
 				09832ECF1C41D110009BC3DF /* managers.ios */,
+				09C4F73F1E8807C30021F3A9 /* managers.ios.rootonly */,
 			);
 		};
 /* End PBXProject section */
@@ -231,6 +272,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				097835621D57B05900E47ED3 /* unity.build.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09C4F7401E8807C30021F3A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09C4F7411E8807C30021F3A9 /* unity.build.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +328,22 @@
 			};
 			name = Release;
 		};
+		09C4F7451E8807C30021F3A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09C4F7491E8808310021F3A9 /* ios.onlyroot.debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		09C4F7461E8807C30021F3A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09C4F7481E8808310021F3A9 /* ios.onlyroot.release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -305,6 +370,15 @@
 			buildConfigurations = (
 				09832ED71C41D110009BC3DF /* Debug */,
 				09832ED81C41D110009BC3DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09C4F7441E8807C30021F3A9 /* Build configuration list for PBXNativeTarget "managers.ios.rootonly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09C4F7451E8807C30021F3A9 /* Debug */,
+				09C4F7461E8807C30021F3A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
