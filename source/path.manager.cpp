@@ -13,7 +13,7 @@ ReferentiableManagerBase()
     }
     
 ReferentiableManager<PathSuite>::~ReferentiableManager() {
-    A(g_pRefManager == this);
+    Assert(g_pRefManager == this);
 }
 
 ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPath(const std::string & nameHint, const std::vector<std::string> & guids, float freqCutoff, integratedPath::IntegrationMode intmode)
@@ -115,13 +115,13 @@ ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPath(const std::st
 
 ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPathVariant(PathSuite * finalizedSuite, const std::string & nameHint, double freqCutoff, bool adaptive, integratedPath::IntegrationMode intmode, const std::vector<std::string> & guids)
 {
-    A(0);//todo
+    Assert(0);//todo
     return {};
 }
 
 ref_unique_ptr<PathSuite> ReferentiableManager<PathSuite>::newPathByCompression(PathSuite * finalizedSuite, const std::string & nameHint, const std::vector<std::string> & guids)
 {
-    A(0);//todo
+    Assert(0);//todo
     return {};
 }
 
