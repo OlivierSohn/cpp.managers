@@ -4,7 +4,6 @@
 
 #ifndef ONLY_ROOT
 #include "../../cpp.algorithms/include/public.h"
-#include "../../cpp.os.log/include/public.h"
 #include "../../glsl.composer/include/public.h"
 #include "../../gl.platform/include/public.h"
 #include "../../tp.muparser/include/public.h"
